@@ -18,8 +18,8 @@ Para cada elemento de la lista, decidid a qué nivel pertenece y justificad por 
 
 Elemento de Estudio Torrent | Nivel (1-5) | Justificación
 ------------ | ------------- | -------------
-El catálogo de servicios publicado en la web del estudio | ---- | --
-Un correo interno entre los socios sobre el calendario de vacaciones | --- | ---
+El catálogo de servicios publicado en la web del estudio | 1 | Es una información a la que los clientes necesitan acceso para saber los servicios que ofrece el estudio y así saber si le interesa hacer un encargo 
+Un correo interno entre los socios sobre el calendario de vacaciones | 2 | Son datos a los que no deberian tener acceso nadie aparte de los empleados.
 Las facturas emitidas a los clientes | -- | ---
 La contraseña de acceso al ERP | -- | --
 Los planos de la vivienda de un cliente, guardados en el disco compartido | -- | --
