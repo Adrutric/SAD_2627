@@ -23,8 +23,8 @@ Un correo interno entre los socios sobre el calendario de vacaciones | 2 | Son d
 Las facturas emitidas a los clientes | -- | ---
 La contraseña de acceso al ERP | -- | --
 Los planos de la vivienda de un cliente, guardados en el disco compartido | -- | --
-El informe de auditoría de vulnerabilidades hecho con Nessus | -- | ---
+El informe de auditoría de vulnerabilidades hecho con Nessus | 5 | El informe de la auditoría tiene que ser completamente privado y solo personas con un rango concreto dentro de la empresa deben conocerlo, si se hiciese publico el daño seria grabe ya que el publico conocería las vulnerabilidades y aumentaría la amenaza.
 Una conversación entre los tres socios sobre si aceptan o no una oferta de compra del estudio | -- | --
-El PDF con las tarifas estándar de los servicios del estudio | -- | --
+El PDF con las tarifas estándar de los servicios del estudio | 1 | Tiene que ser publico para que los clientes sepan el costo de trabajar con el estudio y las tarifas por servicios 
 Las notas de un socio explicando por qué han perdido un cliente frente a la competencia | -- | --
 El registro de qué hora entra cada socio a trabajar | -- | --
