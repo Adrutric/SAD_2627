@@ -19,30 +19,24 @@ Un atacante utilizo este metodo para suplantar a un provedor y afecta a googel y
 SPF DKIM DMIA
 
 ### Fuente
-grupo
+grupo 4
 
 ## 2. DNS spoofing
 
 ### Qué es
-Es un ciberataque altamente engañoso en el que los hackers redirigen el tráfico web hacia servidores web falsos y sitios web de phishing. Estos sitios falsos suelen parecerse al destino previsto por el usuario, lo que facilita a los hackers engañar a los visitantes para que compartan información confidencial
+Es un ciberataque donde se alteran los registros de un servidor o caché de dns para redirigir el tráfico de los usuarios hacia páginas web falsas y maliciosas
+
 ### Cómo se lleva a cabo
-El envenenamiento de caché DNS ocurre cuando un atacante altera los registros de un servidor DNS para vincular un sitio web legítimo a una IP falsa, logrando que los usuarios sean redirigidos a una página maliciosa.
+El atacante introduce datos falsos en la caché de un servidor DNS o intercepta la consulta del usuario para devolver una IP fraudulenta.
 
 ### Qué categoría(s) de amenaza compromete
-Confidencialidad: Al redirigir a la víctima a una web falsa el atacante captura credenciales, datos bancarios y personales.
-Integridad: Se altera la autenticidad de la resolución de nombres y el contenido al que accede el usuario.
-Disponibilidad: Puede utilizarse para bloquear o denegar el acceso a servicios legítimos redirigiendo el tráfico a servidores inexistentes o deshabilitados.
+Confidencialidad: Al redirigir a la víctima a una web falsa el atacante captura credenciales, datos bancarios y personales. Integridad: Se altera la autenticidad de la resolución de nombres y el contenido al que accede el usuario. Disponibilidad: Puede utilizarse para bloquear o denegar el acceso a servicios legítimos redirigiendo el tráfico a servidores inexistentes o deshabilitados.
 
 ### Ejemplo o caso real
-
-En 2015, un grupo de hackers conocido como Lizard Squad lanzó un ataque de envenenamiento DNS contra Malaysia Airlines en el que redirigían a los visitantes de la página a un sitio web falso que les animaba a iniciar sesión solo para ser recibidos por un mensaje 404 y la imagen de un lagarto.
-
-En primer lugar, este ataque causó importantes estragos en la aerolínea, que ya venía de un año difícil en el que se perdieron dos vuelos. En segundo lugar, planteó serias dudas sobre si el grupo de hackers robó o no información personal de alguno de los usuarios que participaron en el ataque y se conectaron al sitio web falso.
+En 2015, un grupo de hackers conocido como Lizard Squad lanzó un ataque de envenenamiento DNS contra Malaysia Airlines en el que redirigían a los visitantes de la página a un sitio web falso que les animaba a iniciar sesión solo para ser recibidos por un mensaje 404 y la imagen de un lagarto. Este ataque causó estragos en la aerolínea, que ya venía de un año difícil en el que se perdieron dos vuelos. En segundo lugar, planteó dudas sobre si el grupo de hackers robó o no información personal de alguno de los usuarios que se conectaron al sitio web falso.
 
 ### Medida de prevención
-Usar HTTPS: Garantiza el cifrado de la conexión.
-Servidores DNS seguros: Utilizar proveedores de confianza con protocolos de validación (como DNSSEC).
-VPN
+Los proveedores pueden usar DNSSEC: Cuando el propietario de un dominio configura las entradas de DNS, DNSSEC añade una firma criptográfica a las entradas requeridas antes de que estos acepten las búsquedas de DNS como auténticas. Usar HTTPS: Garantiza el cifrado de la conexión.
 
 ### Fuente
 https://www.keyfactor.com/es/blog/what-is-dns-poisoning-and-dns-spoofing/
@@ -52,17 +46,25 @@ https://abcnews.com/Technology/malaysia-airlines-hit-lizard-squad-hack-attack/st
 ## 3. IP spoofing
 
 ### Qué es
+es una tecnica que falsifica la dirección ip de los paquetes de red para fingir que vienen de otro equipo
  
 ### Cómo se lleva a cabo
+cambiando las cabeceras de los paquetes de red por otra ip y la respuesta es enviada a la ip del atacante 
 
 ### Qué categoría(s) de amenaza compromete
+autenticidad y luego deriva en el resto 
 
 ### Ejemplo o caso real
+un ataque de una tal kenin a un japones y lo que hico fue cambiar la cabecera de una ip de confianza para obtener acceso al servidor
 
 ### Medida de prevención
+filtrando los paquetes
+supervisión de firewalls 
+formación en seguridad
+IDS
 
 ### Fuente
-
+grupo 1
 
 ## 4. Captura de cuentas de usuario y contraseñas
 ### Qué es
