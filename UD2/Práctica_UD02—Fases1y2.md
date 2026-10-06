@@ -25,7 +25,7 @@ Ejemplos:
 Servicios de inetd o xinetd :  grep 513 /etc/services
 Ejemplo de reinicio de un servicio /etc/init.d/shh reload 
 
-#### Los servicios de inetd.d
+#### Los servicios de xinetd.d
 hay que comentar el servicio con un "#" delante del servicio en los archivos de desntro
 
 #### Los servicios de inetd.conf
