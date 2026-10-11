@@ -17,3 +17,14 @@
 Con la información que he puesto, lo que yo intentaría es ganar acceso utilizando un phishing por que si los empleados no tiene formación en seguridad informática y conociendo los datos de cada empleado y la función que ejercen dentro de la empresa es fácil crear un correo personalizado para cada uno en el que finges ser un cliente o un proveedor con algún problema en en la facturación de uno de los servicios que necesitan como puede ser el del dominio, si consigo que uno de los trabajadores caiga en el phishing y consigo las credenciales para acceder a alguna cuenta revisaría si son las misma que las que aparecen en la foto que aparece el posit y si son las mismas lo más probable es que sean las mismas para casi todo, y dependiendo de la finalidad que tuviera el ataque aquí ya tomaría unas medidas o otras para garantizarme el acceso luego.
 
 # Paso 3
+1º Formación de los empleados en seguridad informática.
+
+Considero que es la más importante, porque al final lo más fácil de engañar para logar algo es a los empleados, y si tienen formación es más difícil que logren engañarlos.
+
+2º Actualizar los sistemas operativos y aplicaciones que utiliza el servidor a versiones actuales
+
+Esta hace que vulnerabilidades antiguas ya no afecten y que sea más difícil por lograr el acceso
+
+3º  Reducir la información que debería ser privada y que aparece en la web
+
+Haciendo eso dificultamos que los posibles atacantes obtengan información y así que sea más fácil para los empleados identificar cuando un mensaje es un phishing 
