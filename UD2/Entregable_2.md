@@ -1,4 +1,4 @@
-
+# Paso 1
 | Dato encontrado | Fuente (1-6) | ¿Para qué le sirve al atacante? | Contramedida propuesta |
 |---|---|---|---|
 | Nombres de los empleados, sus cargos y sus direcciones de correo | 1 | Puede generar mensajes personalizados para cada empleado haciendo referencia a las acciones que hacen en la empresa | No colocar los nombres y los cargos de manera publica a en la web |
@@ -7,8 +7,13 @@
 | La versión del software con el que se creo la web | 1 | Le permite buscar vulnerabilidades sobre la versión concreta | eliminando del pie de pagina la información sombre la versión utilizada |
 | Publicar las versiones desactualizadas de los softwares que utiliza la empresa para la gestión de su servidor | 2 | Buscar vulnerabilidades en concreto para los sistemas operativos desactualizados o los softwares que dan servicio | actualizar las versiones de los SO y no indicar con que software da servicio la empresa |
 | NAS donde guardamos las copias de seguridad | 2 | Sabe donde tienen las copias de seguridad y en el caso de que el ataque busque cifrar los discos sabe donde tienen las copias para que no puedan utilizarlas | Dejar de utilizar un NAS solo y empezar a utilizar discos duros externos o otros dispositivos de almacenamiento que sean fácil de transportar 
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| El email personal de marta a la hora de crear el dominio | 3 | permite enviar phishing haciéndose pasara por hostinge | preparar a los empleados para diferenciar los email falso de los reales |
+| Configuración incorrecta del registro SPF | 4 | Es más sencillo la suplantación del dominio de la empresa mediante correos electrónicos fraudulentos, ya que el registro autoriza cualquier remitente según SPF | Configurar SPF para autorizar únicamente los servidores de correo legítimos |
+| la nota adhesiva amarilla con texto legible | 5 | Puede leer el contenido de la nota el cual seguramente sea una contraseña o un usuario | eliminar notas adhsivas de la vista |
+| Utilizar una red publica | 5 | le permite interceptar el trafico de red y obtener credenciales al saber desde que cafetería trabaja | utilizar una red propia como puede ser la de tu movil |
+| hacer publico el empleado que se encarga de las facturas | 6 | intentar generar un phishing haciendo se pasar por un proveedor | Comprobar que los mensajes son de quien dicen ser mediante las cabeceras de los correos |
+
+# Paso 2
+
+
+# Paso 3
