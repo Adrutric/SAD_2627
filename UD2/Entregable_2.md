@@ -14,6 +14,6 @@
 | hacer publico el empleado que se encarga de las facturas | 6 | intentar generar un phishing haciendo se pasar por un proveedor | Comprobar que los mensajes son de quien dicen ser mediante las cabeceras de los correos |
 
 # Paso 2
-
+Con la información que he puesto, lo que yo intentaría es ganar acceso utilizando un phishing por que si los empleados no tiene formación en seguridad informática y conociendo los datos de cada empleado y la función que ejercen dentro de la empresa es fácil crear un correo personalizado para cada uno en el que finges ser un cliente o un proveedor con algún problema en en la facturación de uno de los servicios que necesitan como puede ser el del dominio, si consigo que uno de los trabajadores caiga en el phishing y consigo las credenciales para acceder a alguna cuenta revisaría si son las misma que las que aparecen en la foto que aparece el posit y si son las mismas lo más probable es que sean las mismas para casi todo, y dependiendo de la finalidad que tuviera el ataque aquí ya tomaría unas medidas o otras para garantizarme el acceso luego.
 
 # Paso 3
