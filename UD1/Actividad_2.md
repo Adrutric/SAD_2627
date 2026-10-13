@@ -26,5 +26,5 @@ Los planos de la vivienda de un cliente, guardados en el disco compartido | 3 | 
 El informe de auditoría de vulnerabilidades hecho con Nessus | 5 | El informe de la auditoría tiene que ser completamente privado y solo personas con un rango concreto dentro de la empresa deben conocerlo, si se hiciese publico el daño seria grabe ya que el publico conocería las vulnerabilidades y aumentaría la amenaza.
 Una conversación entre los tres socios sobre si aceptan o no una oferta de compra del estudio | 2 | Aunque es información sensible no es tampoco una información que sea dañina para la empresa si se hiciera publica
 El PDF con las tarifas estándar de los servicios del estudio | 1 | Tiene que ser publico para que los clientes sepan el costo de trabajar con el estudio y las tarifas por servicios 
-Las notas de un socio explicando por qué han perdido un cliente frente a la competencia | -- | --
-El registro de qué hora entra cada socio a trabajar | -- | --
+Las notas de un socio explicando por qué han perdido un cliente frente a la competencia | 3 | Contienen análisis estratégico e información sobre debilidades comerciales que, de filtrarse, podrían ser aprovechadas por los competidores.
+El registro de qué hora entra cada socio a trabajar | 2 | Son datos de control interno del personal cuya divulgación no genera un perjuicio económico directo o grave para la empresa.
