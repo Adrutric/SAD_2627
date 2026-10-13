@@ -22,9 +22,9 @@
 | 16 | Parásito Informático | Es un software que se adhiere a archivos para ejecutar código malicioso | 
 | 17 | Pharming | Es una técnica que busca redirigir a los usuarios a sitios web fraudolentos | 
 | 18 | Phishing |  | 
-| 19 | Rabbit o conejos |  | 
-| 20 | Riskware |  | 
-| 21 | Rootkit |  | 
+| 19 | Rabbit o conejos | Programa  | 
+| 20 | Riskware | Programa que permite el acceso remoto si esta mal configurado | 
+| 21 | Rootkit | Herramienta que oculta puertas traseras | 
 | 22 | Scumware o Escoria |  | 
 | 23 | Spam |  | 
 | 24 | Spyware |  | 
