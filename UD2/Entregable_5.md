@@ -21,12 +21,12 @@
 | 15 | Leapfrog | Técnica que salta de un sistema comprometido a otro dentro de la red  | 
 | 16 | Parásito Informático | Es un software que se adhiere a archivos para ejecutar código malicioso | 
 | 17 | Pharming | Es una técnica que busca redirigir a los usuarios a sitios web fraudolentos | 
-| 18 | Phishing |  | 
-| 19 | Rabbit o conejos | Programa  | 
+| 18 | Phishing | Es una técnica de engaño mediante correos o mensajes falsos para robar información confidencial y credenciales. | 
+| 19 | Rabbit o conejos | Programa diseñado para replicarse rápidamente consumiendo los recursos del sistema hasta bloquearlo.  | 
 | 20 | Riskware | Programa que permite el acceso remoto si esta mal configurado | 
-| 21 | Rootkit | Herramienta que oculta puertas traseras | 
-| 22 | Scumware o Escoria |  | 
-| 23 | Spam |  | 
-| 24 | Spyware |  | 
-| 25 | Pop_Ups o Ventanas emergentes |  | 
-| 26 | Worms o gusanos |  | 
+| 21 | Rootkit | Herramienta que oculta la presencia de malware y puertas traseras otorgando acceso con privilegios de administrador. | 
+| 22 | Scumware o Escoria | Software molesto que altera la navegación o los resultados de búsqueda para mostrar publicidad engañosa. | 
+| 23 | Spam | Mensajes o correos no solicitados enviados masivamente. | 
+| 24 | Spyware | Software espía que recopila información privada del usuario sin su conocimiento ni consentimiento. | 
+| 25 | Pop_Ups o Ventanas emergentes | Ventanas emergentes en la pantalla que se abren de forma repentina, frecuentemente usadas para publicidad agresiva. | 
+| 26 | Worms o gusanos | Malware capaz de duplicarse y propagarse autónomamente por redes de ordenadores sin intervención del usuario. | 
