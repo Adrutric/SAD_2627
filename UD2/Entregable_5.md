@@ -56,5 +56,6 @@ virus · gusano · troyano · ransomware · spyware · keylogger · adware · ro
 
 Pregunta A: ¿Cuáles de estos incidentes no son "malware" propiamente dicho, sino fraude o ingeniería social? ¿Por qué un antivirus no los detendría?
 
+phishing - pharming - hoax (bulo) - 
 
 
