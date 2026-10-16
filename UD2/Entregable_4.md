@@ -80,5 +80,10 @@ otro
 
 
 ## Reflexión
-(respuestas a las preguntas finales)
+
+### B5. Preguntas finales
+¿Qué contramedida ha reducido más lo que ve el atacante? ¿Por qué?
+Si solo ocultáis un banner pero el servicio sigue activo, ¿la vulnerabilidad sigue ahí? Razonad la respuesta.
+Torrent-Vulnerable usa un sistema operativo sin soporte desde hace años. ¿Puede una contramedida de estas sustituir a actualizarlo? ¿Qué haríais en una empresa real?
+De todas las contramedidas de las partes A y B, ¿cuáles evitan que el atacante encuentre información y cuáles solo ayudan a detectar que lo están intentando? (Aún no las hemos aplicado todas, pero pensad en cuáles serían de cada tipo.)
 
