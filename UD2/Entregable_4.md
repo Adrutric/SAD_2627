@@ -11,28 +11,56 @@
 ###### Primer escaneo para saber que servicios tiene abiertos la maquina metaespoitable
 <img width="688" height="567" alt="image" src="https://github.com/user-attachments/assets/a6464840-7cee-4a87-becf-94738b73b7f8" />
 
+-----
+
 #### Los puertos que aparecen antes de cerrar los servicios
 <img width="719" height="377" alt="image" src="https://github.com/user-attachments/assets/974804b3-d045-4823-a76a-58464b7bd1b7" />
+
+-----
 
 Para IDENTIFICA los puertos que están abiertos se usa sudo netstat -tulpn
 <img width="808" height="931" alt="image" src="https://github.com/user-attachments/assets/3729bf6d-12db-4e0c-9706-e3fa6a8ca5dd" />
 
+------
 
 #### Como se cierran los servicios 
 Ejemplos:
 Servicios de inetd o xinetd :  grep 513 /etc/services
 Ejemplo de reinicio de un servicio /etc/init.d/shh reload 
 
+1º
+<img width="807" height="47" alt="image" src="https://github.com/user-attachments/assets/ca00021e-4711-4f9f-ab55-dc5043ba0242" />
+
+2º
+<img width="481" height="107" alt="image" src="https://github.com/user-attachments/assets/bf8c337b-3963-4319-b4ba-cd85dd775798" />
+
+3º
+<img width="503" height="196" alt="image" src="https://github.com/user-attachments/assets/f2a5646f-af2c-4956-88aa-d0067c838e16" />
+
+Otro ejemplo
+
+<img width="721" height="346" alt="image" src="https://github.com/user-attachments/assets/13b7165e-56c9-43c2-a65f-1827bc021916" />
+
+Uno más 
+
+<img width="748" height="302" alt="image" src="https://github.com/user-attachments/assets/d66eab96-c450-4335-92b6-f7d59330c463" />
+
+-----
+
 #### Los servicios de xinetd.d
 hay que comentar el servicio con un "#" delante del servicio en los archivos de desntro
+
+------
 
 #### Los servicios de inetd.conf
 es un archivo no un directorio
 hay que comentar el servicio con un "#" delante del servicio 
 
+-----
 
 #### Los servicios de rc2.d y compañía 
 
+-----
 
 ### Después
 
