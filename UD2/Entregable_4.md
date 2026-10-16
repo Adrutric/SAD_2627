@@ -54,15 +54,25 @@ Uno más
 #### Los servicios de xinetd.d
 hay que comentar el servicio con un "#" delante del servicio en los archivos de desntro
 
+
+
+
 ------
 
 #### Los servicios de inetd.conf
 es un archivo no un directorio
 hay que comentar el servicio con un "#" delante del servicio 
 
+
+
+
 -----
 
 #### Los servicios de rc2.d y compañía 
+
+
+
+
 
 -----
 
