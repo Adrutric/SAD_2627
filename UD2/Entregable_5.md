@@ -34,7 +34,7 @@
 
 # Parte B · Clasificar amenazas
 
-virus ·  ·  ·  ·  ·  ·  ·  ·  · bomba lógica ·  ·  ·  · 
+virus · gusano · troyano · ransomware · spyware · keylogger · adware · rootkit · backdoor · bomba lógica · bot/zombi · phishing · pharming · hoax (bulo)
 
 # Incidente en Torrent
 
