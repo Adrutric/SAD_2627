@@ -113,9 +113,36 @@ nessus/now 10.12.4 amd64 [installed,local]
 
 ### B5. Comprobad si algún fichero de un paquete ha cambiado desde que se instaló:
 
+??5??????   /opt/nessus/etc/nessus/fipsmodule.cnf
+missing     /opt/nessus/var/nessus/tmp/nessusd
+missing     /opt/nessus/var/nessus/tmp/nessusd.service
+??5??????   /opt/nessus/lib/nessus/plugins/known_CA.inc
+??5??????   /usr/lib/systemd/system/cloud-init.service
 
 
 
+Pregunta B: 
 
+dpkg -V ¿detectaría un rootkit que además hubiera modificado la base de datos de dpkg? 
+
+No, dpkg -V comprueba los archivos actuales con la propia base de datos local de dpkg que esta en /var/lib/dpkg/ y si un rootkit modifica un binario del sistema y la base de datos local de dpkg para que coincidan con el archivo modificado, para dpkg -V todo estará en orden.
+
+¿Por qué conviene comparar con una copia guardada fuera del sistema? (Pista: recordad la fase 4 de la intrusión.)
+Por que en el caso de que haya una alteración en un archivo por un atacante si la comprobación esta en otra maquina el atacante no podrá modificarla para que sea mas difícil darse cuenta de la alteración
+
+
+## Parte C · Verificar una descarga: hash y firma
+
+### C1. Descarga:
+
+mkdir -p ~/verif && cd ~/verif
+wget https://ftp.gnu.org/gnu/hello/hello-2.12.1.tar.gz
+wget https://ftp.gnu.org/gnu/hello/hello-2.12.1.tar.gz.sig
+wget https://ftp.gnu.org/gnu/gnu-keyring.gpg
+
+### C2. Calculad el hash:
+
+sha256sum hello-2.12.1.tar.gz
+Comparadlo con vuestro compañero de al lado. ¿Sale igual? Debería.
 
 
