@@ -94,10 +94,24 @@ amd64 indica para que arquitectura es
 
 <img width="880" height="225" alt="image" src="https://github.com/user-attachments/assets/e0e82cdc-5bee-4a25-9c74-aff050c7ac4d" />
 
+Estos se instalaron mediante apt de los repositorios oficiales de Ubuntu y fueron verificados por Canonical con las firmas digitales GPG 
+krb5-locales/noble-security,now 1.20.1-6ubuntu2.7 all [installed,upgradable to: 1.20.1-6ubuntu2.10]
+
+libencode-locale-perl/noble,now 1.05-3 all [installed,automatic]
+
+liblocale-gettext-perl/noble,now 1.07-6ubuntu5 amd64 [installed,automatic]
+
+locales/noble-updates,noble-security,now 2.39-0ubuntu8.9 all [installed,automatic]
+
+python-babel-localedata/noble,now 2.10.3-3build1 all [installed,automatic]
+
+Este si que fue instalado de manera manual con el usuario root descargándolo del repositorio de Tenable para Nessus y este no fue verificado 
+
+nessus/now 10.12.4 amd64 [installed,local]
 
 
 
-
+### B5. Comprobad si algún fichero de un paquete ha cambiado desde que se instaló:
 
 
 
