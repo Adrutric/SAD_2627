@@ -66,5 +66,42 @@ Reflexiona:
 Por si solo no pasaría nada ya que APT no da por bueno todo lo que esta en /usr/share/keyrings/ , si no que también revisa que este la firma en la ruta del Signed-By:
 
 ¿y si intercepta o reemplaza la clave oficial de Ubuntu ubuntu-archive-keyrings.gpg?
+En este caso si que podría modificar los archivos y poner que los paquetes suyos son legítimos con la firma y APT los instalaría 
+
+
+### B3. Información de un paquete concreto. Elegid openssh-server o curl:
+
+<img width="839" height="253" alt="image" src="https://github.com/user-attachments/assets/df3e08f7-0cc8-489e-9431-cecde97bafcc" />
+
+
+Versión instalada (Installed): 1:9.6p1-3ubuntu13.19
+
+Versión candidata (Candidate): 1:9.6p1-3ubuntu13.19
+
+Repositorio de origen:   
+500 http://es.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages 
+500 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages  
+100 /var/lib/dpkg/status
+
+Significado de la tabla de versiones:  *** indican la versión instalada actualmente en el sistema
+ 
+500 y 100 representan las prioridades de preferencia (pin priority) de cada fuente
+
+amd64 indica para que arquitectura es 
+
+
+### B4. Buscad paquetes instalados que no proceden de ningún repositorio (instalados a mano):
+
+<img width="880" height="225" alt="image" src="https://github.com/user-attachments/assets/e0e82cdc-5bee-4a25-9c74-aff050c7ac4d" />
+
+
+
+
+
+
+
+
+
+
 
 
