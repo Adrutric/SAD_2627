@@ -116,8 +116,19 @@ Uno más
 #### Los servicios de xinetd.d
 hay que comentar el servicio con un "#" delante del servicio en los archivos de desntro
 
-grep -w 514 /etc/services **dice el nombre del servicio que esta en el puerto**
+grep -w 21 /etc/services **dice el nombre del servicio que esta en el puerto**
 
+sudo grep -rnw "vsftpd" /etc/inetd.conf /etc/xinetd.conf /etc/xinetd.d/ 2>/dev/null
+
+sudo cp /etc/xinetd.d/vsftpd /root/vsftp.bak la copia de seguridad por cada servicio que cierres 
+
+sudo sed -i 's/disable.*/disable = yes/' /etc/xinetd.d/vsftpd
+
+si no funciona hay que hacerlo de manera manual entrado a cambiarlo sudo nano /etc/xinetd.d/vsftpd
+
+<img width="569" height="339" alt="image" src="https://github.com/user-attachments/assets/e1ec90c0-4ccd-4196-9865-f65118056122" />
+
+ps aux | grep -i
 
 ------
 
@@ -130,7 +141,7 @@ grep -w 514 /etc/services **dice el nombre del servicio que esta en el puerto**
 
 sudo grep -rnw "shell" /etc/inetd.conf /etc/xinetd.conf /etc/xinetd.d/ 2>/dev/null con esto te dice donde esta el servicio guardado solo hay que cambiar el nombre que esta entre ""
 
-sudo cp /etc/xinetd.d/login /root/login.bak copia de seguridad, solo hacer la primera vez
+sudo cp /etc/inetd.conf /root/inetd.conf.bak copia de seguridad, en este solo necesitas hacerlo en el primero sino reescribe la copia 
 
 sudo sed -i 's/^shell/#shell/' /etc/inetd.conf en este caso ha que cambiar esto s/^shell/#shell/ por el nombre del servico que quieres cerrar
 
@@ -141,8 +152,6 @@ Ejemplo :
 <img width="927" height="953" alt="image" src="https://github.com/user-attachments/assets/1ed86411-d018-4063-a64c-478a1b76e501" />
 
 
-
-
 -----
 
 #### Los servicios de rc2.d y compañía 
@@ -151,7 +160,7 @@ Ejemplo :
 
 -----
 #### Cosas raras 
-
+cunado no están en ningún lado pueden estar en rc.local con sudo nao /etc/rc.local puedes entar para cerrarlo, luego matas el porceso con sudo killall y el  nombre del proceso
 
 
 -----
@@ -167,7 +176,11 @@ otro
 
 
 ### Después
+1º antes del reinicio
 
+<img width="788" height="135" alt="image" src="https://github.com/user-attachments/assets/389d0721-d86a-42e9-a8a8-f1950956642f" />
+
+2º despues del reinico 
 
 ## Reflexión
 
