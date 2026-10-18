@@ -175,6 +175,9 @@ otro
 <img width="544" height="184" alt="image" src="https://github.com/user-attachments/assets/29341554-f6ad-412d-b0ce-87d4c9eb4043" />
 
 
+sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+
+
 ### Después
 1º antes del reinicio
 
@@ -185,6 +188,60 @@ otro
 <img width="622" height="196" alt="image" src="https://github.com/user-attachments/assets/6979fb06-25fb-4df3-982d-da1547bfa409" />
 
 ## Reflexión
+
+### B4. Medición DESPUÉS
+linux@SAD-Ubuntu:~$ diff antes.txt despues.txt
+1,30c1,8
+< # Nmap 7.94SVN scan initiated Fri Oct  2 17:18:29 2026 as: nmap -sV -oN antes.txt 192.168.1.10
+< Nmap scan report for 192.168.1.10
+< Host is up (0.00097s latency).
+< Not shown: 977 closed tcp ports (reset)
+< PORT     STATE SERVICE      VERSION
+< 21/tcp   open  ftp          vsftpd 2.3.4
+< 22/tcp   open  ssh          OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+< 23/tcp   open  telnet?
+< 25/tcp   open  smtp?
+< 53/tcp   open  domain       ISC BIND 9.4.2
+< 80/tcp   open  http         Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+< 111/tcp  open  rpcbind      2 (RPC #100000)
+< 139/tcp  open  netbios-ssn  Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+< 445/tcp  open  netbios-ssn  Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+< 512/tcp  open  exec?
+< 513/tcp  open  login?
+< 514/tcp  open  shell?
+< 1099/tcp open  java-rmi     GNU Classpath grmiregistry
+< 1524/tcp open  bindshell    Metasploitable root shell
+< 2049/tcp open  nfs          2-4 (RPC #100003)
+< 2121/tcp open  ccproxy-ftp?
+< 3306/tcp open  mysql?
+< 5432/tcp open  postgresql   PostgreSQL DB 8.3.0 - 8.3.7
+< 5900/tcp open  vnc          VNC (protocol 3.3)
+< 6000/tcp open  X11          (access denied)
+< 6667/tcp open  irc          UnrealIRCd
+< 8009/tcp open  ajp13        Apache Jserv (Protocol v1.3)
+< 8180/tcp open  http         Apache Tomcat/Coyote JSP engine 1.1
+< MAC Address: 08:00:27:82:4E:36 (Oracle VirtualBox virtual NIC)
+< Service Info: Host: irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+---
+> # Nmap 7.94SVN scan initiated Sun Oct 18 19:09:31 2026 as: nmap -sV -oN despues.txt 192.168.56.100
+> Nmap scan report for 192.168.56.100
+> Host is up (0.00076s latency).
+> Not shown: 998 filtered tcp ports (no-response)
+> PORT   STATE SERVICE VERSION
+> 22/tcp open  ssh     OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+> 80/tcp open  http    Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+> Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+33c11
+< # Nmap done at Fri Oct  2 17:21:31 2026 -- 1 IP address (1 host up) scanned in 181.38 seconds
+---
+> # Nmap done at Sun Oct 18 19:09:46 2026 -- 1 IP address (1 host up) scanned in 15.06 seconds
+
+
+| Aspecto | Antes | Contramedida aplicada | Después |
+| --- | --- | --- | --- |
+| Puertos abiertos | 21/tcp22/tcp23/tcp25/tcp53/tcp80/tcp111/tcp139/tcp445/tcp512/tcp513/tcp514/tcp1099/tcp1524/tcp2049/tcp2121/tcp3306/tcp5432/tcp5900/tcp6000/tcp6667/tcp8009/tcp8180/tcp | Cerrar los puertos haciendo que los servicios innecesarios no se encienden  | 80 y 22 |
+| Servicios/versiones visibles | ftp ssh telnet? smtp? domain http rpcbind netbios-ssn netbios-ssn exec? login? shell? java-rmi bindshell nfs ccproxy-ftp? mysql? postgresql vnc X11 irc ajp13 http | detener los servicios | ssh y apache |
+| Respuesta al ping | Sí | bloquear el ping | No |
 
 ### B5. Preguntas finales
 ¿Qué contramedida ha reducido más lo que ve el atacante? ¿Por qué?
