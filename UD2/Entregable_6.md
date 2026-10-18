@@ -140,9 +140,135 @@ wget https://ftp.gnu.org/gnu/hello/hello-2.12.1.tar.gz
 wget https://ftp.gnu.org/gnu/hello/hello-2.12.1.tar.gz.sig
 wget https://ftp.gnu.org/gnu/gnu-keyring.gpg
 
+linux@SAD-Ubuntu:~$ mkdir -p ~/verif && cd ~/verif
+linux@SAD-Ubuntu:~/verif$ wget https://ftp.gnu.org/gnu/hello/hello-2.12.1.tar.gz
+--2026-10-18 10:43:10--  https://ftp.gnu.org/gnu/hello/hello-2.12.1.tar.gz
+Resolving ftp.gnu.org (ftp.gnu.org)... 209.51.188.20, 2001:470:142:3::b
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1033297 (1009K) [application/x-gzip]
+Saving to: ‘hello-2.12.1.tar.gz’
+
+hello-2.12.1.tar.gz 100%[===================>]   1009K  1.38MB/s    in 0.7s    
+
+2026-10-18 10:43:11 (1.38 MB/s) - ‘hello-2.12.1.tar.gz’ saved [1033297/1033297]
+
+linux@SAD-Ubuntu:~/verif$ wget https://ftp.gnu.org/gnu/hello/hello-2.12.1.tar.gz.sig
+--2026-10-18 10:43:21--  https://ftp.gnu.org/gnu/hello/hello-2.12.1.tar.gz.sig
+Resolving ftp.gnu.org (ftp.gnu.org)... 209.51.188.20, 2001:470:142:3::b
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 488 [application/pgp-signature]
+Saving to: ‘hello-2.12.1.tar.gz.sig’
+
+hello-2.12.1.tar.gz 100%[===================>]     488  --.-KB/s    in 0s      
+
+2026-10-18 10:43:21 (30.3 MB/s) - ‘hello-2.12.1.tar.gz.sig’ saved [488/488]
+
+linux@SAD-Ubuntu:~/verif$ wget https://ftp.gnu.org/gnu/gnu-keyring.gpg
+--2026-10-18 10:43:30--  https://ftp.gnu.org/gnu/gnu-keyring.gpg
+Resolving ftp.gnu.org (ftp.gnu.org)... 209.51.188.20, 2001:470:142:3::b
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3698125 (3.5M)
+Saving to: ‘gnu-keyring.gpg’
+
+gnu-keyring.gpg     100%[===================>]   3.53M  3.11MB/s    in 1.1s    
+
+2026-10-18 10:43:32 (3.11 MB/s) - ‘gnu-keyring.gpg’ saved [3698125/3698125]
+
+linux@SAD-Ubuntu:~/verif$ 
+
 ### C2. Calculad el hash:
 
 sha256sum hello-2.12.1.tar.gz
 Comparadlo con vuestro compañero de al lado. ¿Sale igual? Debería.
+el mio
+linux@SAD-Ubuntu:~/verif$ sha256sum hello-2.12.1.tar.gz
+8d99142afd92576f30b0cd7cb42a8dc6809998bc5d607d88761f512e26c7db20  hello-2.12.1.tar.gz
+
+### C3. Verificad la firma usando la lista de claves de GNU:
+
+linux@SAD-Ubuntu:/verif$ gpg --no-default-keyring --keyring ./gnu-keyring.gpg --verify hello-2.12.1.tar.gz.sig hello-2.12.1.tar.gz
+
+gpg: Signature made Sun 29 May 2022 11:05:00 PM UTC
+
+gpg:                    using RSA key 24093F016FFE8602EF449BB84C8EF3DA3FD37230
+
+gpg: Good signature from "Reuben Thomas <rrt@sc3d.org>" [unknown]
+
+gpg:                 aka "keybase.io/rrt <rrt@keybase.io>" [unknown]
+
+gpg: WARNING: This key is not certified with a trusted signature!
+
+gpg:           There is no indication that the signature belongs to the owner.
+
+Primary key fingerprint: 2409 3F01 6FFE 8602 EF44  9BB8 4C8E F3DA 3FD3 7230
+
+linux@SAD-Ubuntu:/verif$
+
+
+Nombre de quien firmó: Reuben Thomas <rrt@sc3d.org>
+
+Fecha de la firma: Sun 29 May 2022 11:05:00 PM UTC
+
+Identificador de la clave: 4C8EF3DA3FD37230
+
+
+
+### C4. El experimento: ¿qué pasa si alguien toca el fichero? Haced una copia y añadid un carácter:
+
+linux@SAD-Ubuntu:~/verif$ cp hello-2.12.1.tar.gz hello-manipulado.tar.gz
+
+linux@SAD-Ubuntu:~/verif$ echo "x" >> hello-manipulado.tar.gz
+
+linux@SAD-Ubuntu:~/verif$ sha256sum hello-2.12.1.tar.gz hello-manipulado.tar.gz
+8d99142afd92576f30b0cd7cb42a8dc6809998bc5d607d88761f512e26c7db20  hello-2.12.1.tar.gz
+8c253f1ad6ea1e57b01624a938f6e81aec3685fcc53ed2e5bd5f99e22e417cf8  hello-manipulado.tar.gz
+
+linux@SAD-Ubuntu:~/verif$ cp hello-2.12.1.tar.gz.sig hello-manipulado.tar.gz.sig
+
+linux@SAD-Ubuntu:~/verif$ gpg --no-default-keyring --keyring ./gnu-keyring.gpg --verify hello-manipulado.tar.gz.sig hello-manipulado.tar.gz
+gpg: Signature made Sun 29 May 2022 11:05:00 PM UTC
+gpg:                using RSA key 24093F016FFE8602EF449BB84C8EF3DA3FD37230
+gpg: BAD signature from "Reuben Thomas <rrt@sc3d.org>" [unknown]
+
+¿cómo cambia el hash?
+Cambia el hash por que al añadir un solo carácter la cadena hexadecimal ya no es la misma y eso da otro resultado ha la hora de calcularlo 
+
+8d99142afd92576f30b0cd7cb42a8dc6809998bc5d607d88761f512e26c7db20  hello-2.12.1.tar.gz
+
+
+8c253f1ad6ea1e57b01624a938f6e81aec3685fcc53ed2e5bd5f99e22e417cf8  hello-manipulado.tar.gz
+
+¿Qué dice ahora gpg?
+gpg: BAD signature from "Reuben Thomas <rrt@sc3d.org>" [unknown]
+
+
+### C5. Pregunta C: completad:
+
+| Situación | ¿Basta con el hash? | ¿Hace falta la firma? | ¿Por qué? |
+| --- | --- | --- | --- |
+| El fichero se corrompió al descargarlo | Sí | No | Por qué al calcular el hash del archivo que te descargas si esta incompleto por un fallo a la hora de descargar el resultado será diferente al que dice el distribuidor de ese archivo |
+| Un atacante cambió el fichero y el hash publicado en la misma web | No | Sí | En este caso el hash coincidirá pero la firma será diferente y es la manera de identificar que el archivo ha sido manipulado |
+| Descargas desde un espejo (*mirror*) que no es de confianza | No | Sí | En este caso es parecido al anterior, el servidor puede tener un hash del archivo manipulado y solo con la firma gpt se puede saber si el archivo es el original y de quien debería de ser  |
+
+
+## Parte D · Política de actualizaciones para Torrent
+
+Torrent tiene tres socios y nadie se encarga del mantenimiento. Redactad una política de máximo 6 líneas que responda:
+
+¿Quién se encarga de las actualizaciones y con qué frecuencia?
+¿Se actualiza todo automáticamente o primero se prueba? (Pensad en el equipo del servidor de impresión y en el ERP.)
+¿De dónde se puede instalar software y quién lo autoriza?
+¿Qué se hace con el equipo que ya no recibe parches (EOL)?
+Para ver la opción automática en Ubuntu/Debian (solo mirad, no hace falta activarla):
+
+apt policy unattended-upgrades
+cat /etc/apt/apt.conf.d/20auto-upgrades 2>/dev/null
+Debate: actualizar automáticamente reduce el riesgo de que Torrent esté desactualizado, pero una actualización puede romper el ERP un viernes por la tarde. ¿Qué ganáis y qué perdéis con cada opción?
+
+Windows: los mismos conceptos existen allí con otros nombres. winver (versión), Windows Update (parches), Get-FileHash fichero (hash) y Get-AuthenticodeSignature fichero (firma de un ejecutable).
+
 
 
