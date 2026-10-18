@@ -1,3 +1,103 @@
+## Parte A · ¿Está actualizado el sistema?
+Trabajad en Torrent-Auditor.
+
+### A1. Anotad qué versión de sistema operativo y kernel tenéis:
+
+lsb_release -a
+uname -r
+
+linux@SAD-Ubuntu:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 24.04.3 LTS
+Release:	24.04
+Codename:	noble
+
+linux@SAD-Ubuntu:~$ uname -r
+7.0.0-31-generic
+ 
+
+### A2. Pedid al sistema la lista de paquetes disponibles y qué se puede actualizar:
+
+sudo apt update
+apt list --upgradable
+Anotad: ¿cuántos paquetes tienen actualización pendiente?
+
+239 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
+
+### A3. Simulad la actualización sin aplicarla:
+
+sudo apt-get -s upgrade | head -30
+La opción -s es "simular". Fijaos en que dice qué instalaría, pero no toca nada.
+
+sudo apt-get -s upgrade | head -30
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+The following upgrades have been deferred due to phasing:
+  snapd
+The following packages have been kept back:
+  fwupd linux-generic-hwe-24.04 linux-headers-generic
+  linux-headers-generic-hwe-24.04 linux-image-generic-hwe-24.04
+The following packages will be upgraded:
+  
+  alsa-ucm-conf apparmor apport apport-core-dump-handler apport-gtk base-files
+  
+  bind9-dnsutils bind9-host bind9-libs bluez bluez-cups bluez-obexd cloud-init
+  
+  console-setup console-setup-linux dconf-cli dconf-gsettings-backend
+  
+  dconf-service dhcpcd-base dmidecode dnsmasq-base dracut-install gdb gdm3
+  
+  gir1.2-gdm-1.0 gir1.2-glib-2.0 gir1.2-gtk-4.0 gir1.2-mutter-14 gir1.2-nm-1.0
+  
+  gir1.2-rsvg-2.0 gir1.2-soup-3.0 gnome-control-center
+  
+  gnome-control-center-data gnome-control-center-faces gnome-keyring
+  
+  gnome-keyring-pkcs11 gnome-remote-desktop gnome-settings-daemon
+  
+  gnome-settings-daemon-common gnome-shell gnome-shell-common
+  
+  gnome-shell-extension-desktop-icons-ng gstreamer1.0-alsa gstreamer1.0-gl
+  
+  gstreamer1.0-plugins-base gstreamer1.0-plugins-base-apps
+  
+  gstreamer1.0-plugins-good gstreamer1.0-x gvfs gvfs-backends gvfs-common
+  
+  gvfs-daemons gvfs-fuse gvfs-libs heif-gdk-pixbuf heif-thumbnailer
+  
+  initramfs-tools initramfs-tools-bin initramfs-tools-core iproute2
+  
+  keyboard-configuration krb5-locales language-pack-en language-pack-en-base
+  
+  language-pack-gnome-en language-pack-gnome-en-base ldap-utils libapparmor1
+  
+  libarchive13t64 libaudit-common libaudit1 libauthen-sasl-perl libbluetooth3
+  
+  libcurl3t64-gnutls libcurl4t64 libdconf1 libde265-0 libegl-mesa0 libexpat1
+  
+  libfprint-2-2 libfprint-2-tod1 libfreerdp-server3-3 libfreerdp3-3
+  
+  libfreetype6 libfwupd2 libgbm1 libgdm1 libgl1-mesa-dri libglib2.0-0t64
+
+
+### A4. ¿Y si el sistema ya no recibe parches? Buscad en https://endoflife.date la fecha de fin de soporte de:
+
+La versión de Ubuntu/Debian de vuestro Torrent-Auditor.
+Ubuntu 8.04, la que tiene Torrent-Vulnerable (Metasploitable2).
+Rellenad:
+
+| Sistema | Fecha de fin de soporte | ¿Recibe parches hoy? |
+| --- | --- | --- |
+| Torrent-Auditor | Ends in 2 years and 7 months (31 May 2029) Ends in 2 years and 7 months (31 May 2029) Ends in 7 years (25 Apr 2034) | Sí |
+| Torrent-Vulnerable (Ubuntu 8.04) | 8.04 'Hardy Heron' (LTS)	18 years ago (24 Apr 2008) Ended 13 years ago (09 May 2013) Ended 13 years ago (09 May 2013) Unavailable | No |
+
+Pregunta A: En la oferta de empleo de Torrent (dossier de la UD02) decían que trabajaban con "Ubuntu 8.04". Aunque pusieran todas las contraseñas bien, ¿qué problema sigue sin tener solución?
+
+Es una versión muy antigua y que lleva 18 años sin actualizaciones eso hace que este lleno de vulnerabilidades y de problemas con softwares más modernos, la única solución que hay es actualizar a un sistema operativo que tenga soporte de actualizaciones de seguridad  
 
 ## Parte B · ¿De dónde vienen los programas instalados?
 
