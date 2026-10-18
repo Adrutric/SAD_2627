@@ -9,7 +9,69 @@
 
 ### Antes
 ###### Primer escaneo para saber que servicios tiene abiertos la maquina metaespoitable
-<img width="688" height="567" alt="image" src="https://github.com/user-attachments/assets/a6464840-7cee-4a87-becf-94738b73b7f8" />
+Nmap 7.94SVN scan initiated Fri Oct  2 17:18:29 2026 as: nmap -sV -oN antes.txt 192.168.1.10
+
+Nmap scan report for 192.168.1.10
+
+Host is up (0.00097s latency).
+
+Not shown: 977 closed tcp ports (reset)
+
+PORT     STATE SERVICE      VERSION
+
+21/tcp   open  ftp          vsftpd 2.3.4
+
+22/tcp   open  ssh          OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+
+23/tcp   open  telnet?
+
+25/tcp   open  smtp?
+
+53/tcp   open  domain       ISC BIND 9.4.2
+
+80/tcp   open  http         Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+
+111/tcp  open  rpcbind      2 (RPC #100000)
+
+139/tcp  open  netbios-ssn  Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+
+445/tcp  open  netbios-ssn  Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+
+512/tcp  open  exec?
+
+513/tcp  open  login?
+
+514/tcp  open  shell?
+
+1099/tcp open  java-rmi     GNU Classpath grmiregistry
+
+1524/tcp open  bindshell    Metasploitable root shell
+
+2049/tcp open  nfs          2-4 (RPC #100003)
+
+2121/tcp open  ccproxy-ftp?
+
+3306/tcp open  mysql?
+
+5432/tcp open  postgresql   PostgreSQL DB 8.3.0 - 8.3.7
+
+5900/tcp open  vnc          VNC (protocol 3.3)
+
+6000/tcp open  X11          (access denied)
+
+6667/tcp open  irc          UnrealIRCd
+
+8009/tcp open  ajp13        Apache Jserv (Protocol v1.3)
+
+8180/tcp open  http         Apache Tomcat/Coyote JSP engine 1.1
+
+MAC Address: 08:00:27:82:4E:36 (Oracle VirtualBox virtual NIC)
+
+Service Info: Host: irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+
+Nmap done at Fri Oct  2 17:21:31 2026 -- 1 IP address (1 host up) scanned in 181.38 seconds
 
 -----
 
@@ -54,14 +116,29 @@ Uno más
 #### Los servicios de xinetd.d
 hay que comentar el servicio con un "#" delante del servicio en los archivos de desntro
 
-
+grep -w 514 /etc/services **dice el nombre del servicio que esta en el puerto**
 
 
 ------
 
 #### Los servicios de inetd.conf
+
 es un archivo no un directorio
 hay que comentar el servicio con un "#" delante del servicio 
+
+grep -w 514 /etc/services **dice el nombre del servicio que esta en el puerto**
+
+sudo grep -rnw "shell" /etc/inetd.conf /etc/xinetd.conf /etc/xinetd.d/ 2>/dev/null con esto te dice donde esta el servicio guardado solo hay que cambiar el nombre que esta entre ""
+
+sudo cp /etc/xinetd.d/login /root/login.bak copia de seguridad, solo hacer la primera vez
+
+sudo sed -i 's/^shell/#shell/' /etc/inetd.conf en este caso ha que cambiar esto s/^shell/#shell/ por el nombre del servico que quieres cerrar
+
+sudo /etc/init.d/xinetd reload hay que reiniciar el portero para que se cierre del todo y no aparezca como no cerrado en el netstat -tulpn
+
+Ejemplo : 
+
+<img width="927" height="953" alt="image" src="https://github.com/user-attachments/assets/1ed86411-d018-4063-a64c-478a1b76e501" />
 
 
 
@@ -71,6 +148,9 @@ hay que comentar el servicio con un "#" delante del servicio
 #### Los servicios de rc2.d y compañía 
 
 
+
+-----
+#### Cosas raras 
 
 
 
