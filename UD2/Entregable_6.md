@@ -262,11 +262,38 @@ Torrent tiene tres socios y nadie se encarga del mantenimiento. Redactad una pol
 ¿Se actualiza todo automáticamente o primero se prueba? (Pensad en el equipo del servidor de impresión y en el ERP.)
 ¿De dónde se puede instalar software y quién lo autoriza?
 ¿Qué se hace con el equipo que ya no recibe parches (EOL)?
+
+Se tiene que designar ha alguien que se encargue de revisar las actualizaciones y aplicarlas cuando haya alguna al menos una vez al mes, para evitar que los servidores sufran fallos por algún error en las actualizaciones primero se se tendrán que poner aprueba en maquinas aparte y cuando se vea que no dan fallo se aplican las actualizaciones al servidor de impresión y al ERP, solo se podrá instalar software de los repositorios oficiales y que cuenten con las firmas de autenticidad, en el caso de que sea necesario algún programa externo se tendrá que verificar que es fiable en un entorno de pruebas controlado, y los equipos que ya no reciban parches se tendrán que actualizar a sistemas mas modernos y que si que tengan parches de seguridad.
+
+
 Para ver la opción automática en Ubuntu/Debian (solo mirad, no hace falta activarla):
 
 apt policy unattended-upgrades
 cat /etc/apt/apt.conf.d/20auto-upgrades 2>/dev/null
+
+linux@SAD-Ubuntu:~$ apt policy unattended-upgrades
+
+unattended-upgrades:
+  Installed: 2.9.1+nmu4ubuntu1
+  Candidate: 2.9.1+nmu4ubuntu1
+  Version table:
+
+ *** 2.9.1+nmu4ubuntu1 500
+        500 http://es.archive.ubuntu.com/ubuntu noble/main amd64 Packages
+        100 /var/lib/dpkg/status
+
+linux@SAD-Ubuntu:~$ cat /etc/apt/apt.conf.d/20auto-upgrades 2>/dev/null
+
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+
+
 Debate: actualizar automáticamente reduce el riesgo de que Torrent esté desactualizado, pero una actualización puede romper el ERP un viernes por la tarde. ¿Qué ganáis y qué perdéis con cada opción?
+
+Con las actualizaciones automáticas no tiene que haber un trabajador pendiente de si hay que actualizar o no algo, también las vulnerabilidades que hay en las versiones anteriores no les afectan por tener los equipos actualizados, por otro lado si ocurre un fallo con esa actualización no habrá manera de detectarlo antes de que se ponga en los equipos de producción como el servidor de impresión y puede que detenga toda la producción hasta que vuelva a la versión anterior de manera manual.
+Mientras que de manera manual tienes que tener ha alguien que se encargue de comprobar y actualizar los equipos, esto te da la garantía de que cuando actualices todo funcionara como debe por que ya se ha probado antes pero eso también hace que todo sea más lento y que las actualizaciones tarden más en aplicarse haciendo que las vulnerabilidades estén por mas tiempo.
+
+
 
 Windows: los mismos conceptos existen allí con otros nombres. winver (versión), Windows Update (parches), Get-FileHash fichero (hash) y Get-AuthenticodeSignature fichero (firma de un ejecutable).
 
