@@ -71,7 +71,10 @@ SSL Anonymous Cipher Suites Supported | Media / 5.9 | Uso | Al no hacer la confi
 * Referencia: Nessus Plugin ID: 10407 / X Server Detection
 
 ## 6. Recomendaciones
-(2-3 acciones concretas que recomendarías, ordenadas por prioridad)
+1º  Actualizar el sistema operativo a una versión moderna y que cuente con actualizaciones de seguridad
+2º Actualizar todos los servicios a versiones actuales y que ya han corregido los fallos que detecta nessus
+3º Aplicar las configuraciones de manera correcta a los servicios que permiten ejecutar scrips en el sistema  
+
 
 ## 7. Conclusión
 (Una valoración breve: ¿firmarías el contrato de mantenimiento sabiendo lo que sabes ahora? ¿Con qué condiciones?)
