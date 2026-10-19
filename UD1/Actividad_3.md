@@ -78,3 +78,5 @@ SSL Anonymous Cipher Suites Supported | Media / 5.9 | Uso | Al no hacer la confi
 
 ## 7. Conclusión
 (Una valoración breve: ¿firmarías el contrato de mantenimiento sabiendo lo que sabes ahora? ¿Con qué condiciones?)
+Sí, si que firmaría un contrato de mantenimiento con condiciones de pasar cada cierto tiempo auditorias completas y revisiones periódicas de servicios importantes para evitar tener tantas vulnerabilidades 
+
