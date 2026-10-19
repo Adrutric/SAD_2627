@@ -41,9 +41,9 @@ En total el escanea me ha devuelto 65 vulnerabilidades
 
 Vulnerabilidad | Severidad / CVSS | Origen | Descripción
 ------------ | ------------- | ------------ | -------------
-Debian OpenSSH/OpenSSL Package Random Number Generator Weakness (SSL check) | Critacial / 10-0 * | Implementación  | La clave de host SSH remota se ha generado en un sistema Debian o Ubuntu que contiene un fallo (bug) en el generador de números aleatorios de su librería OpenSSL.El problema se debe a que un empaquetador de Debian eliminó casi todas las fuentes de entropía en la versión remota de OpenSSL.Un atacante puede obtener fácilmente la parte privada de la clave remota y utilizarla para descifrar la sesión remota o llevar a cabo un ataque de "hombre en el medio" (Man-in-the-Middle) 
-X Server Detection | Baja / 2.6 | Uso | El equipo remoto está ejecutando un servidor X11. X11 es un protocolo cliente-servidor que se utiliza para mostrar en un cliente remoto aplicaciones gráficas que se ejecutan en un equipo determinado. Como el tráfico de X11 no está cifrado, es posible que un atacante intercepte la conexión.
-SSL Anonymous Cipher Suites Supported | Media / 5.9 | Uso | El equipo remoto admite el uso de suites de cifrado SSL anónimas. Aunque esto permite a un administrador configurar un servicio que cifra el tráfico sin necesidad de generar y configurar certificados SSL, no  frece forma de verificar la identidad del equipo remoto y deja el servicio expuesto a un ataque de intermediario (Man-in-the-Middle)
+Debian OpenSSH/OpenSSL Package Random Number Generator Weakness (SSL check) | Critacial / 10-0 * | Implementación  | La clave SSH no se genera aleatoria mente por un fallo en las librerías de debian
+X Server Detection | Baja / 2.6 | Diseño | Los datos que envia el servidor al cliente viajan en texto plano por que el protocolo que utiliza no los envía cifrados 
+SSL Anonymous Cipher Suites Supported | Media / 5.9 | Uso | Al no hacer la configuración por completo y dejarla de serie el servidor no comprueba si el SSL es anónimo por que no tienen configurados ninguno 
 
 
 ## 5. Análisis en profundidad
