@@ -48,6 +48,10 @@ sha256sum ~/eicar.txt
 
 Anotad: ¿cuántos motores lo detectan?
 
+Lo detectan 63
+
+<img width="655" height="202" alt="image" src="https://github.com/user-attachments/assets/99f431f5-4a8b-4f12-aaf4-df5bcd4b9705" />
+
 
 ---
 
@@ -62,6 +66,9 @@ sudo apt update
 
 sudo apt install -y clamav
 
+<img width="766" height="192" alt="image" src="https://github.com/user-attachments/assets/3e116174-ff2c-4307-8d61-f0dd2cb31872" />
+
+
 ### D2. Actualizar las firmas (la "base de datos de virus"). Si falla con un mensaje de bloqueo, parad antes el servicio automático:
 
 sudo systemctl stop clamav-freshclam
@@ -69,18 +76,25 @@ sudo freshclam
 sudo systemctl start clamav-freshclam
 Anotad la fecha de la base de datos: clamscan --version.
 
+<img width="472" height="85" alt="image" src="https://github.com/user-attachments/assets/fa4ba707-4135-4fa6-b9bb-bdf9cd7e0cdf" />
+
+
 ### D3. Escanear el fichero EICAR:
 
 clamscan ~/eicar.txt
 
 Veréis una línea terminada en FOUND y un resumen. Anotad el nombre con el que ClamAV bautiza la amenaza y el número de ficheros infectados.
 
+El nombre que le da es : Eicar-Signature y los ficheros infectados dice que solo es 1
+
+<img width="739" height="374" alt="image" src="https://github.com/user-attachments/assets/0bc991a0-573c-4cb1-847d-bd6be81cfdc3" />
+
+
 ### D4. Escanear una carpeta entera, mostrando solo lo infectado:
 
 clamscan -r -i -v ~
 
 Opciones útiles:
-
 
 | Opción | Qué hace |
 | --- | --- |
@@ -91,6 +105,10 @@ Opciones útiles:
 | --remove | Borra los infectados (peligroso con falsos positivos) |
 | -l | fichero.log	Guarda un registro |
 
+<img width="409" height="250" alt="image" src="https://github.com/user-attachments/assets/4bc49e94-3562-4bc1-bbfc-9b9e0900d447" />
+
+
+
 ### D5. Cuarentena en vez de borrar:
 
 mkdir -p ~/cuarentena
@@ -100,9 +118,13 @@ clamscan -r -i -v --move=$HOME/cuarentena ~
 ls -l ~/cuarentena
 
 
-Pregunta D: ¿Por qué suele ser mejor mover a cuarentena que borrar directamente? ¿Qué pasaría si ClamAV marcara por error un fichero importante del ERP de Torrent?
+Pregunta D: ¿Por qué suele ser mejor mover a cuarentena que borrar directamente?
 
+Por que así puedes analizar después para ver el alcance que tiene y todo lo que ha afectado y así poder comprobar que no sea un falso positivo 
 
+¿Qué pasaría si ClamAV marcara por error un fichero importante del ERP de Torrent?
+
+Depende de que se haya de finido que tiene que hacer cunado da un positivo algún archivo, si lo mueve a cuarentena el archivo pierde los permisos hasta que lo analices y veas si es un archivo malicioso o un falso positivo, si se borra directamente no se puede analizar  ni saber que ha podido hacer 
 
 ### D6. Detectar rootkits (herramienta complementaria, también de la familia "paliativa"):
 
@@ -121,6 +143,16 @@ sudo rkhunter --check --sk --rwo
 El informe completo queda en /var/log/rkhunter.log.
 
 Ojo: rkhunter suele dar falsos positivos en un sistema recién instalado. Anotad cuáles salen y razonad si son preocupantes o no.
+
+Sustitución de comando por script de Perl
+
+Añadido de usuarios y grupos del sistema (Postfix / Postdrop)
+
+Configuración por defecto de SSH (PermitRootLogin)
+
+Ficheros ocultos en el directorio /etc
+
+<img width="1270" height="375" alt="image" src="https://github.com/user-attachments/assets/ed40acf2-e383-4735-ac2d-cc15fd885499" />
 
 ---
 
