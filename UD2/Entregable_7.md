@@ -170,11 +170,24 @@ Contestad por escrito, antes de ejecutarlo:
 
 ¿Qué crees que hace cada línea?
 
+1º DIR="/tmp/.cache_sistema" y mkdir -p "$DIR"  : Define una ruta a una carpeta oculta y la guardia en una variable 
+
+2º echo "$(date) - activo" >> "$DIR/estado.log"  : Crea un fichero en la carpeta oculta y escribe la hora y la fecha
+
+3º cp "$0" "$DIR/actualizador.sh" 2>/dev/null   : Se copia a el mismo dentro de la carpeta oculta 
+
+4º if ! ss -tln ... y ( nohup python3 -m http.server 8081 ... )  : Comprueba si el puerto 8081 esta libre y si lo esta inicia un servidor http en local con python3 
+
+5º LINEA="@reboot /bin/bash $DIR/actualizador.sh" ( crontab -l ... | grep ...; echo "$LINEA" ) | crontab - : Crea una tarea en crom para que en caso de reinicio se vulva a ejecutar 
+
 
 ¿Crea ficheros? ¿Abre puertos? ¿Modifica algo para sobrevivir a un reinicio?
 
+Sí, si que crea ficheros, sí, que abre puertos, sí, crea una tarea para sobrevivir a un reinicio
 
 Si fuera un .exe binario, ¿qué habría que hacer en su lugar? (Pista: no se puede leer, habría que usar herramientas como strings o un desensamblador.)
+
+revisar las cadenas de texto, utilizar un desensamblador y un descompilador para que pueda extraer y revisar su código y ver que rutas utiliza, y el desensamblador y el descompilador para traducir el lenguaje maquina a uno que se pueda leer 
 
 ---
 
@@ -194,6 +207,9 @@ crontab -l > ~/antes_cron.txt 2>&1
 
 ls -la /tmp > ~/antes_tmp.txt
 
+<img width="358" height="107" alt="image" src="https://github.com/user-attachments/assets/ee783f5b-98ee-4c92-ac0a-648ca3b5f498" />
+
+
 Ejecutad el programa como usuario normal (no como root):
 
 bash sospechoso.sh
@@ -208,6 +224,8 @@ crontab -l > ~/despues_cron.txt 2>&1
 
 ls -la /tmp > ~/despues_tmp.txt
 
+<img width="586" height="144" alt="image" src="https://github.com/user-attachments/assets/6f5f1b86-dcb0-42af-84cf-c9cdeb389b02" />
+
 
 diff ~/antes_procesos.txt ~/despues_procesos.txt
 
@@ -217,15 +235,23 @@ diff ~/antes_cron.txt ~/despues_cron.txt
 
 diff ~/antes_tmp.txt ~/despues_tmp.txt
 
+
+
+
+
+
 Rellenad el informe de comportamiento:
 
-| Qué hace |	Evidencia (comando y salida) | ¿Qué fase del ataque recuerda? |
-| --- | --- | --- |
-|Crea ficheros o carpetas |  |	
-| Abre  algún puerto o proceso |  |
-| Intenta persistir (sobrevivir a un reinicio) |  |
+| Qué hace | Evidencia (comando y salida) | ¿Qué fase del ataque recuerda? |
+| :--- | :--- | :--- |
+| Crea ficheros o carpetas | `diff ~/antes_tmp.txt ~/despues_tmp.txt`: <br><img width="608" height="77" alt="image" src="https://github.com/user-attachments/assets/ea6c60ee-ad1f-4fc2-834c-fc568165b5eb" /> | Fase 3 |
+| Abre algún puerto o proceso | `diff ~/antes_procesos.txt ~/despues_procesos.txt`: <br><img width="1462" height="67" alt="image" src="https://github.com/user-attachments/assets/bf78cd99-faba-4882-9d7f-ad640b0cf77f" /><br><br>`diff ~/antes_puertos.txt ~/despues_puertos.txt`: <br><img width="1057" height="49" alt="image" src="https://github.com/user-attachments/assets/71952bd7-c62b-4c63-bf69-4288414db976" /> | Fase 3 |
+| Intenta persistir (sobrevivir a un reinicio) | `diff ~/antes_cron.txt ~/despues_cron.txt`: <br><img width="567" height="41" alt="image" src="https://github.com/user-attachments/assets/220c7473-6c17-4721-b684-893e6a5121f4" /> | Fase 4 |
 
 Comprobad la persistencia: reiniciad la VM y volved a mirar si el comportamiento reaparece.
+Sí que sigue funcionando después de el reinicio 
+<img width="748" height="75" alt="image" src="https://github.com/user-attachments/assets/7873047a-3909-4f7a-a792-e9cb89aaa805" />
+
 
 Erradicación: documentad cómo lo eliminaríais (parar el proceso, quitar la entrada de arranque, borrar los ficheros) y verificad con los mismos comandos del paso 3 que ha desaparecido. Después podéis volver al snapshot.
 
