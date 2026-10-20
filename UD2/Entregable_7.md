@@ -48,6 +48,7 @@ sha256sum ~/eicar.txt
 
 Anotad: ¿cuántos motores lo detectan?
 
+
 ---
 
 # SESIÓN 2
