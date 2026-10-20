@@ -22,10 +22,10 @@ Rellenad en vuestro documento:
 
 | Medida de aislamiento | ¿Hecho? | ¿Qué riesgo evita? |
 | --- | --- | --- |
-| Sin carpetas compartidas ni portapapeles |  |  |
-| Snapshot previo |  |  |
-| Sin red (o red interna aislada) al ejecutar |  |  |
-| Máquina que no contiene datos personales ni credenciales |  |  |
+| Sin carpetas compartidas ni portapapeles | Sí | Que no pueda utilizar las carpetas compartidas ni el portapapeles para saltar a la maquina real  |
+| Snapshot previo | Sí | Que en caso de que falle algo pueda recuperar la maquina al esta de antes de iniciar la practica |
+| Sin red (o red interna aislada) al ejecutar | Sí | Que no se pueda expandir a otros equipos que esten en la red |
+| Máquina que no contiene datos personales ni credenciales | Sí | Que no pueda robar datos personales ni credenciales  |
 
 ----
 
