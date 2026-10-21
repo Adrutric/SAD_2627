@@ -250,13 +250,28 @@ Rellenad el informe de comportamiento:
 
 Comprobad la persistencia: reiniciad la VM y volved a mirar si el comportamiento reaparece.
 Sí que sigue funcionando después de el reinicio 
+
 <img width="748" height="75" alt="image" src="https://github.com/user-attachments/assets/7873047a-3909-4f7a-a792-e9cb89aaa805" />
 
 
 Erradicación: documentad cómo lo eliminaríais (parar el proceso, quitar la entrada de arranque, borrar los ficheros) y verificad con los mismos comandos del paso 3 que ha desaparecido. Después podéis volver al snapshot.
 
-Pregunta F: Habéis encontrado el comportamiento comparando "antes" y "después". ¿Cuál es el equivalente en un servidor real de Torrent si nadie hizo la foto inicial? ¿Qué relación tiene con el inventario de servicios que hicisteis en la práctica anterior?
+<img width="691" height="406" alt="image" src="https://github.com/user-attachments/assets/89a9cbb6-fb6f-4c82-8fb0-f2b5ef31afa7" />
 
+Hay que hacer estos pasos, primero eliminar el proceso de ejecución del script, segundo eliminar de las tareas programadas para que no se vuelva a ejecutar cundo se apague y por ultimo eliminar los archivos de la carpeta oculta y la carpeta 
+
+
+Pregunta F: Habéis encontrado el comportamiento comparando "antes" y "después". 
+
+
+¿Cuál es el equivalente en un servidor real de Torrent si nadie hizo la foto inicial? 
+
+Un equivalente son los sistemas de monitoreo de integridad de archivos que lo que hacen es calcular los hashes de lo archivos después de que se creen o se modifiquen
+
+
+¿Qué relación tiene con el inventario de servicios que hicisteis en la práctica anterior?
+
+Con esto podemos ver si se ha modificado el hash de un archivo y así darnos cuenta de que hay algo que no debería estar y luego de eso se tendría que empezar un análisis en búsqueda del archivo que afecta al sistema
 
 ---
 
@@ -264,14 +279,12 @@ Pregunta F: Habéis encontrado el comportamiento comparando "antes" y "después"
 
 Clasificad cada medida:
 
-
-
 | Medida | Preventiva | Paliativa |
 | --- | --- | --- |
-| Mantener el sistema actualizado	|  |  |
-| ClamAV escaneando a demanda un disco |  |  |
-| Descargar software solo de repositorios oficiales |  |  |
-| Copia de seguridad semanal desconectada de la red	|  |  |
-| Cuenta de usuario sin privilegios de administrador	|  |  |
-| rkhunter tras sospechar una intrusión	|  |  |
-| Formación del personal contra el phishing	|  |  |
+| Mantener el sistema actualizado	| Preventiva |  |
+| ClamAV escaneando a demanda un disco |  | Paliativa |
+| Descargar software solo de repositorios oficiales | Preventiva |  |
+| Copia de seguridad semanal desconectada de la red	| Preventiva |  |
+| Cuenta de usuario sin privilegios de administrador	| Preventiva |  |
+| rkhunter tras sospechar una intrusión	|  | Paliativa |
+| Formación del personal contra el phishing	| Preventiva |  |
