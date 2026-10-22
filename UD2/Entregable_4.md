@@ -50,6 +50,20 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done at Fri Oct  2 17:21:31 2026 -- 1 IP address (1 host up) scanned in 181.38 seconds
 
 ```
+-----
+
+<img width="1059" height="453" alt="image" src="https://github.com/user-attachments/assets/d7b173a2-e569-4a6f-9914-f18a5a899e46" />
+
+
+DUEÑO: proftpd
+
+<img width="1059" height="585" alt="image" src="https://github.com/user-attachments/assets/9b33b6eb-a131-4f90-98f1-006efcae8f3c" />
+
+
+DUEÑO: xinetd
+
+<img width="1044" height="553" alt="image" src="https://github.com/user-attachments/assets/6f232b36-2b7b-4a71-8b89-d112256ca2e6" />
+
 
 -----
 #### Los puertos que aparecen antes de cerrar los servicios
