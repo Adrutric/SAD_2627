@@ -9,12 +9,19 @@
 
 #### Escaneo Nmap Inicial
 
+<img width="597" height="91" alt="image" src="https://github.com/user-attachments/assets/f2c515a2-062a-428a-9dfb-fe1fb4962d9e" />
+
+
 Comando ejecutado para el descubrimiento inicial de servicios:
 ```bash
 nmap -sV -oN antes.txt 192.168.1.10
 ```
 
 **Resultado obtenido:**
+
+<img width="833" height="616" alt="image" src="https://github.com/user-attachments/assets/a2b77e74-25a4-4b3d-b8e9-6439992b5795" />
+
+
 ```text
 Nmap 7.94SVN scan initiated Fri Oct  2 17:18:29 2026 as: nmap -sV -oN antes.txt 192.168.1.10
 Nmap scan report for 192.168.1.10
@@ -50,6 +57,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done at Fri Oct  2 17:21:31 2026 -- 1 IP address (1 host up) scanned in 181.38 seconds
 
 ```
+
 -----
 
 <img width="1059" height="453" alt="image" src="https://github.com/user-attachments/assets/d7b173a2-e569-4a6f-9914-f18a5a899e46" />
@@ -64,12 +72,122 @@ DUEÑO: xinetd
 
 <img width="1044" height="553" alt="image" src="https://github.com/user-attachments/assets/6f232b36-2b7b-4a71-8b89-d112256ca2e6" />
 
+-----
+-----
+### Para no volverme loco en el examen
+
+Si esta en init.d
+
+Parar el servicio activo
+
+
+sudo /etc/init.d/[nombre_del_servicio] stop
+
+Impedir que vuelva a arrancar al reiniciar
+
+
+sudo update-rc.d -f [nombre_del_servicio] remove
+
+Ejemplo de mysql
+
+<img width="791" height="547" alt="image" src="https://github.com/user-attachments/assets/ffcfbfe3-a665-45e9-8a58-5f447d03bb8b" />
+
+----
+----
+
+Si esta en xinetd
+
+
+Identificar el fichero del servicio por nombre o puerto
+
+grep -w [numero_puerto] /etc/services
+
+ls /etc/xinetd.d   
+
+'El nombre de los archivos son diferentes a los de los servicios por alguna razón inexplicable, el que más se le parezca  '
+ 
+sudo grep -rnw "[nombre_del_servicio]" /etc/xinetd.d/ 2>/dev/null
+
+Desactivar el servicio (descomentar/establecer disable = yes)
+
+
+sudo sed -i 's/disable.*/disable = yes/' /etc/xinetd.d/[nombre_del_servicio]
+
+lo mejor es entrar con nano y cambiarlo manual mente da menos problemas 
+
+
+
+Recargar el portero xinetd
+
+sudo /etc/init.d/xinetd reload
+
+
+-----
+-----
+-----
+-----
+
+
+Ejemplo de vsftp
+
+<img width="646" height="477" alt="image" src="https://github.com/user-attachments/assets/393965a8-8ddd-4cc3-8af9-4276821019bf" />
+
+
+----
+----
+
+Si esta en inet.conf
+
+
+
+Averiguar nombre del servicio por el puerto
+
+grep -w [numero_puerto] /etc/services
+
+
+Comentar la línea correspondiente al servicio
+
+esto es lo más facil 
+
+sudo nano /etc/inetd.conf 
+
+
+
+
+sudo sed -i 's/^[nombre_del_servicio]/#[nombre_del_servicio]/' /etc/inetd.conf
+
+ Recargar el demonio xinetd/inetd
+
+sudo /etc/init.d/xinetd reload
+
+
+
+
+----
+
+----
+
+----
+
+----
+
+----
+
+----
+
+----
+
+
+
+
+
+
+
+
 
 -----
 #### Los puertos que aparecen antes de cerrar los servicios
-<img width="719" height="377" alt="image" src="https://github.com/user-attachments/assets/974804b3-d045-4823-a76a-58464b7bd1b7" />
 
------
 #### Identificación Local de Procesos
 Para comprobar qué procesos y PIDs tienen asignados los puertos escuchando internamente:
 ```bash
@@ -192,7 +310,7 @@ ps aux | grep -i
 
 ------
 
-#### Los servicios de inetd.conf
+## Los servicios de inetd.conf
 
 #### 3. Servicios a Demanda Gestionados por `inetd` (Archivo `/etc/inetd.conf`)
 
