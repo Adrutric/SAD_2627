@@ -72,11 +72,11 @@ Como crear la estructura :
 ```bash
 #Propietario root y se dan permisos con ACL a los grupos y usuarios
 
-sudo su
+sudo su   # Para que al crearlos el propietario sea root
 
 mkdir Torrent-SL Torrent-SL/planos Torrent-SL/planos/autoclave.dwg Torrent-SL/planos/caldera.dwg Torrent-SL/planos/destilacion.dwg
 
-hmi_planta = script con un echo
+# hmi_planta = script con un echo
 
 # Contenido del script hmi_planta.sh
 
