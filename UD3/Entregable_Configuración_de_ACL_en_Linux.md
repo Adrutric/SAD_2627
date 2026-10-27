@@ -45,21 +45,45 @@ dpkg -s acl
 ```
 
 2. Crea los tres grupos y los nueve usuarios del enunciado, asignando a cada usuario su grupo correspondiente.
+```bash
+# Creación de usuarios:
+useradd – m usuario
+
+# Creación de los grupos
+groupadd grupo
+
+# Añadir usuario a grupo
+usermod -a -G grupo usuario
+
+```
 
 3. Crea la estructura de ficheros: un fichero (o script) ejecutable llamado hmi_planta, y una carpeta planos/ con los ficheros autoclave.dwg, caldera.dwg y destilacion.dwg.
 
-#### Tarea 2 — Permisos base (propietario / grupo / resto)
-
-4. Decide qué usuario y qué grupo deben ser propietarios de hmi_planta y de planos/ (por ejemplo, un usuario de sistemas o de ingeniería).
-
 ```bash
 hmi_planta = script con un echo
+
+# Contenido del script hmi_planta.sh
+
+#!/bin/bash
+echo " Hola usuario " 
 
 #Propietario root y se dan permisos con ACL a los grupos y usuarios
 
 ```
 
+#### Tarea 2 — Permisos base (propietario / grupo / resto)
+
+4. Decide qué usuario y qué grupo deben ser propietarios de hmi_planta y de planos/ (por ejemplo, un usuario de sistemas o de ingeniería).
+
+
 5. Aplica con chmod unos permisos de partida restrictivos (por ejemplo 750 o 700), de forma que el resto del acceso tenga que concederse explícitamente mediante ACL.
+
+```bash
+# chmod 777 "ruta al directorio/archivo"
+
+
+```
+
 
 #### Tarea 3 — Configurar las ACL con setfacl
 
