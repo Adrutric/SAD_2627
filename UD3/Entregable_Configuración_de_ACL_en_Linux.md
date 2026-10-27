@@ -40,7 +40,9 @@ r = leer · w = escribir · x = ejecutar. Deja en blanco lo que el diagrama no i
 
 1. Comprueba que el soporte de ACL está disponible en tu sistema:
 
-' $ dpkg -s acl '
+```bash
+dpkg -s acl
+```
 
 2. Crea los tres grupos y los nueve usuarios del enunciado, asignando a cada usuario su grupo correspondiente.
 
@@ -50,6 +52,12 @@ r = leer · w = escribir · x = ejecutar. Deja en blanco lo que el diagrama no i
 
 4. Decide qué usuario y qué grupo deben ser propietarios de hmi_planta y de planos/ (por ejemplo, un usuario de sistemas o de ingeniería).
 
+```bash
+hmi_planta = script con un echo
+
+#Propietario root y se dan permisos con ACL a los grupos y usuarios
+
+```
 
 5. Aplica con chmod unos permisos de partida restrictivos (por ejemplo 750 o 700), de forma que el resto del acceso tenga que concederse explícitamente mediante ACL.
 
@@ -57,10 +65,16 @@ r = leer · w = escribir · x = ejecutar. Deja en blanco lo que el diagrama no i
 
 Para cada fila que hayas completado en la tabla de la sección 3, añade la entrada de ACL correspondiente.
 Recuerda la sintaxis básica:
-$ setfacl -m g:grupo:rwx recurso # ACL de acceso para un grupo
-$ setfacl -m u:usuario:rwx recurso # ACL de acceso para un usuario concreto
-$ setfacl -R -m g:grupo:rwx planos/ # aplicar de forma recursiva a una carpeta
-$ setfacl -d -m g:grupo:rwx planos/ # ACL por defecto para los ficheros nuevos
+``` bash
+setfacl -m g:grupo:rwx recurso # ACL de acceso para un grupo
+
+setfacl -m u:usuario:rwx recurso # ACL de acceso para un usuario concreto
+
+setfacl -R -m g:grupo:rwx planos/ # aplicar de forma recursiva a una carpeta
+
+setfacl -d -m g:grupo:rwx planos/ # ACL por defecto para los ficheros nuevos
+
+```
 
 6. Aplica las ACL necesarias sobre hmi_planta.
 
@@ -68,8 +82,7 @@ $ setfacl -d -m g:grupo:rwx planos/ # ACL por defecto para los ficheros nuevos
 7. Aplica las ACL necesarias sobre la carpeta planos/ y, si procede, sobre los ficheros que ya contiene.
 
 
-8. Valora si alguno de los permisos del diagrama debería aplicarse también como ACL por defecto (setfacl
--d), para que los ficheros nuevos que se creen en planos/ hereden automáticamente esos permisos.
+8. Valora si alguno de los permisos del diagrama debería aplicarse también como ACL por defecto (setfacl -d), para que los ficheros nuevos que se creen en planos/ hereden automáticamente esos permisos.
 
 
 #### Tarea 4 — Verificación
@@ -77,13 +90,18 @@ $ setfacl -d -m g:grupo:rwx planos/ # ACL por defecto para los ficheros nuevos
 
 9. Comprueba el resultado con getfacl sobre cada recurso:
 
+``` bash
+getfacl hmi_planta
 
-$ getfacl hmi_planta
-$ getfacl -R planos/
-
+getfacl -R planos/
+```
 
 10.Accede como cada uno de los nueve usuarios (su -l usuario) y comprueba que puede hacer exactamente lo que el diagrama indica, y nada más.
 
+
+
+## Preguntas de reflexión
+1. ¿Por qué no bastan los permisos clásicos de Unix (usuario / grupo / resto) para implementar el esquema del diagrama? Pon un ejemplo concreto de este caso.
 
 ## Entrega
 • Un script (.sh) con todos los comandos ejecutados (grupos, usuarios, chmod y setfacl), comentado.
@@ -91,5 +109,3 @@ $ getfacl -R planos/
 • Las respuestas a las preguntas de la sección 6.
 
 
-## Preguntas de reflexión
-1. ¿Por qué no bastan los permisos clásicos de Unix (usuario / grupo / resto) para implementar el esquema del diagrama? Pon un ejemplo concreto de este caso.
