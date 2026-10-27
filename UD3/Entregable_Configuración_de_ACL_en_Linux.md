@@ -92,11 +92,33 @@ echo " Hola usuario "
 4. Decide qué usuario y qué grupo deben ser propietarios de hmi_planta y de planos/ (por ejemplo, un usuario de sistemas o de ingeniería).
 
 
+
+Grupos: 
+
+Operarios --x hmi_planta
+
+Ingenieria No permisos definidos por grupo
+
+Supervisores r-x planos/
+
+Usuarios: 
+
+alberto r-- autoclave.dwg
+
+oscar r-- caldera.dwg
+
+nestor r-x hmi_planta
+
+victor rwx planos/
+
+lucia rwx hmi_planta
+
+lucia rw- autoclave.dwg
+
 5. Aplica con chmod unos permisos de partida restrictivos (por ejemplo 750 o 700), de forma que el resto del acceso tenga que concederse explícitamente mediante ACL.
 
 ```bash
 # chmod 777 "ruta al directorio/archivo"
-
 
 ```
 
@@ -142,6 +164,17 @@ getfacl -R planos/
 
 ## Preguntas de reflexión
 1. ¿Por qué no bastan los permisos clásicos de Unix (usuario / grupo / resto) para implementar el esquema del diagrama? Pon un ejemplo concreto de este caso.
+
+2. ¿Qué es la máscara (mask) de una ACL y cómo afecta a los permisos efectivos de un usuario o grupo, aunque su entrada de ACL indique más permisos?
+
+
+3. ¿Qué diferencia hay entre una ACL de acceso y una ACL por defecto? ¿Cuándo se aplica cada una?
+
+
+4. Si mañana se incorpora un nuevo operario, ¿qué pasos tendrías que repetir para darle exactamente el
+mismo acceso que al resto de operarios?
+
+
 
 ## Entrega
 • Un script (.sh) con todos los comandos ejecutados (grupos, usuarios, chmod y setfacl), comentado.
