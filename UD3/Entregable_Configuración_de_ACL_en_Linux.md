@@ -165,7 +165,7 @@ setfacl -d -m g:grupo:rwx planos/ # ACL por defecto para los ficheros nuevos
 
 6. Aplica las ACL necesarias sobre hmi_planta.
 ``` bash
-setfacl -m g:Operarios:--x hmi_planta.sh
+setfacl -m g:Operarios:r-x hmi_planta.sh
 setfacl -m u:nestor:r-x hmi_planta.sh
 setfacl -m u:lucia:rwx hmi_planta.sh
 ```
