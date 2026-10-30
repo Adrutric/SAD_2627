@@ -137,7 +137,7 @@ lucia rw- autoclave.dwg
 5. Aplica con chmod unos permisos de partida restrictivos (por ejemplo 750 o 700), de forma que el resto del acceso tenga que concederse explícitamente mediante ACL.
 
 ```bash
-# chmod -R 700 "ruta al directorio"
+# chmod -R 750 "ruta al directorio"
 
 # -R De manera recursiva
 
@@ -194,6 +194,9 @@ setfacl -m u:oscar:r-- planos/caldera.dwg
 El único que creo que debería heredar permisos de los archivos y directorios que se creen nuevos es Víctor 
 ```bash
 setfacl -d -R -m u:victor:rwx planos/
+
+vale si no se pone lectura a todos no se pueden acceder a los directorios
+
 ```
 <img width="618" height="46" alt="image" src="https://github.com/user-attachments/assets/465264bb-d605-4ab3-b9a5-c7840cd3ce9d" />
 
@@ -241,14 +244,5 @@ Porque los permisos de grupo restringen a los usuarios que si que deberían pode
 3. ¿Qué diferencia hay entre una ACL de acceso y una ACL por defecto? ¿Cuándo se aplica cada una?
 
 
-4. Si mañana se incorpora un nuevo operario, ¿qué pasos tendrías que repetir para darle exactamente el
-mismo acceso que al resto de operarios?
-
-
-
-## Entrega
-• Un script (.sh) con todos los comandos ejecutados (grupos, usuarios, chmod y setfacl), comentado.
-• Capturas de pantalla de la salida de getfacl para hmi_planta y para planos/.
-• Las respuestas a las preguntas de la sección 6.
-
+4. Si mañana se incorpora un nuevo operario, ¿Qué pasos tendrías que repetir para darle exactamente el mismo acceso que al resto de operarios?
 
