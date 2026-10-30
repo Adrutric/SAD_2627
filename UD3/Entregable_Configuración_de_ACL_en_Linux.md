@@ -223,13 +223,17 @@ planos/
 
 <img width="277" height="225" alt="image" src="https://github.com/user-attachments/assets/b4f8a754-f238-4785-8e24-b59a89a9e948" />
 
+---
 
 10. Accede como cada uno de los nueve usuarios (su -l usuario) y comprueba que puede hacer exactamente lo que el diagrama indica, y nada más.
 
 
 
+
 ## Preguntas de reflexión
 1. ¿Por qué no bastan los permisos clásicos de Unix (usuario / grupo / resto) para implementar el esquema del diagrama? Pon un ejemplo concreto de este caso.
+
+Porque los permisos de grupo restringen a los usuarios que si que deberían poder acceder a algunos recursos en concreto
 
 2. ¿Qué es la máscara (mask) de una ACL y cómo afecta a los permisos efectivos de un usuario o grupo, aunque su entrada de ACL indique más permisos?
 
