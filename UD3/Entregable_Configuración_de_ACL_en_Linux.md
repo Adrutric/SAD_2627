@@ -132,12 +132,18 @@ lucia rwx hmi_planta
 
 lucia rw- autoclave.dwg
 
+---
+
 5. Aplica con chmod unos permisos de partida restrictivos (por ejemplo 750 o 700), de forma que el resto del acceso tenga que concederse explícitamente mediante ACL.
 
 ```bash
-# chmod 777 "ruta al directorio/archivo"
+# chmod -R 700 "ruta al directorio"
+
+# -R De manera recursiva
 
 ```
+
+<img width="570" height="114" alt="image" src="https://github.com/user-attachments/assets/e5534a94-651d-4efd-9c30-83a63dc8d251" />
 
 
 #### Tarea 3 — Configurar las ACL con setfacl
@@ -155,13 +161,41 @@ setfacl -d -m g:grupo:rwx planos/ # ACL por defecto para los ficheros nuevos
 
 ```
 
-6. Aplica las ACL necesarias sobre hmi_planta.
+---
 
+6. Aplica las ACL necesarias sobre hmi_planta.
+``` bash
+setfacl -m g:Operarios:--x hmi_planta.sh
+setfacl -m u:nestor:r-x hmi_planta.sh
+setfacl -m u:lucia:rwx hmi_planta.sh
+```
+
+<img width="614" height="166" alt="image" src="https://github.com/user-attachments/assets/cd34ba80-33c4-4243-bc73-eacf54e42626" />
+
+---
 
 7. Aplica las ACL necesarias sobre la carpeta planos/ y, si procede, sobre los ficheros que ya contiene.
 
+```bash
+setfacl -R -m g:Supervisores:r-x planos/
+setfacl -R -m u:victor:rwx planos/
+setfacl -m u:lucia:rw- planos/autoclave.dwg
+setfacl -m u:alberto:r-- planos/autoclave.dwg
+setfacl -m u:oscar:r-- planos/caldera.dwg
+
+```
+
+<img width="624" height="264" alt="image" src="https://github.com/user-attachments/assets/cd9704e3-4487-4715-a1a0-d705ed71fb79" />
+
+---
 
 8. Valora si alguno de los permisos del diagrama debería aplicarse también como ACL por defecto (setfacl -d), para que los ficheros nuevos que se creen en planos/ hereden automáticamente esos permisos.
+
+El único que creo que debería heredar permisos de los archivos y directorios que se creen nuevos es Víctor 
+```bash
+setfacl -d -R -m u:victor:rwx planos/
+```
+<img width="618" height="46" alt="image" src="https://github.com/user-attachments/assets/465264bb-d605-4ab3-b9a5-c7840cd3ce9d" />
 
 
 #### Tarea 4 — Verificación
@@ -170,12 +204,27 @@ setfacl -d -m g:grupo:rwx planos/ # ACL por defecto para los ficheros nuevos
 9. Comprueba el resultado con getfacl sobre cada recurso:
 
 ``` bash
-getfacl hmi_planta
+getfacl hmi_planta.sh
 
 getfacl -R planos/
 ```
 
-10.Accede como cada uno de los nueve usuarios (su -l usuario) y comprueba que puede hacer exactamente lo que el diagrama indica, y nada más.
+hmi_planta.sh
+
+<img width="520" height="243" alt="image" src="https://github.com/user-attachments/assets/7bdbe0d8-f2f0-4652-be94-c2b5ab477c56" />
+
+---
+
+planos/
+
+<img width="482" height="231" alt="image" src="https://github.com/user-attachments/assets/f2a10fff-3a04-4872-91b5-e513f29734c1" />
+
+<img width="323" height="465" alt="image" src="https://github.com/user-attachments/assets/bf23a80e-ef88-4b42-a88d-13c668abad98" />
+
+<img width="277" height="225" alt="image" src="https://github.com/user-attachments/assets/b4f8a754-f238-4785-8e24-b59a89a9e948" />
+
+
+10. Accede como cada uno de los nueve usuarios (su -l usuario) y comprueba que puede hacer exactamente lo que el diagrama indica, y nada más.
 
 
 
