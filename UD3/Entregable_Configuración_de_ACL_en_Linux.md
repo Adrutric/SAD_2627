@@ -27,11 +27,11 @@ r = leer · w = escribir · x = ejecutar. Deja en blanco lo que el diagrama no i
 
 | Grupo | Recurso | Permisos | rwx |
 | --- | --- | --- | --- |
-| operarios | hmi_planta |  | 
-| operarios | planos/ |  | 
-| ingenieria | hmi_planta |  | 
-| ingenieria | planos/ |  | 
-| supervisores | planos/ |  |
+| operarios | hmi_planta | Ejecución | --x 
+| operarios | planos/ | Nada | ---
+| ingenieria | hmi_planta | Nada | --- 
+| ingenieria | planos/ | Nada | ---
+| supervisores | planos/ | Lectura, ejecución | r-x
 
 ## Tareas a realizar
 
@@ -43,19 +43,34 @@ r = leer · w = escribir · x = ejecutar. Deja en blanco lo que el diagrama no i
 ```bash
 dpkg -s acl
 ```
+<img width="615" height="439" alt="image" src="https://github.com/user-attachments/assets/dc4a6c77-a48e-43cc-8678-a34b0d85f15f" />
+
+---
 
 2. Crea los tres grupos y los nueve usuarios del enunciado, asignando a cada usuario su grupo correspondiente.
 ```bash
 # Creación de usuarios:
 useradd – m usuario
+```
+<img width="437" height="206" alt="image" src="https://github.com/user-attachments/assets/ee0f3010-1f98-454f-9600-cce5ca4e7256" />
 
+---
+
+```bash
 # Creación de los grupos
 groupadd grupo
+```
+<img width="476" height="70" alt="image" src="https://github.com/user-attachments/assets/2eece026-ee86-440e-b82e-c83e100e83ae" />
 
+---
+
+```bash
 # Añadir usuario a grupo
 usermod -a -G grupo usuario
-
 ```
+<img width="594" height="205" alt="image" src="https://github.com/user-attachments/assets/c656ae8f-939c-44bd-bada-0f169c8e7e5e" />
+
+---
 
 3. Crea la estructura de ficheros: un fichero (o script) ejecutable llamado hmi_planta, y una carpeta planos/ con los ficheros autoclave.dwg, caldera.dwg y destilacion.dwg.
 
@@ -87,11 +102,13 @@ echo " Hola usuario "
 
 ```
 
+<img width="441" height="294" alt="image" src="https://github.com/user-attachments/assets/c120c5af-9849-41ff-80aa-f11d87315bcf" />
+
+---
+
 #### Tarea 2 — Permisos base (propietario / grupo / resto)
 
 4. Decide qué usuario y qué grupo deben ser propietarios de hmi_planta y de planos/ (por ejemplo, un usuario de sistemas o de ingeniería).
-
-
 
 Grupos: 
 
