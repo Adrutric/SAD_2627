@@ -102,7 +102,7 @@ echo " Hola usuario "
 
 ```
 
-<img width="441" height="294" alt="image" src="https://github.com/user-attachments/assets/c120c5af-9849-41ff-80aa-f11d87315bcf" />
+<img width="459" height="156" alt="image" src="https://github.com/user-attachments/assets/3ec09149-d0aa-496b-9f22-9641b483c9ae" />
 
 ---
 
@@ -228,10 +228,53 @@ planos/
 
 ---
 
+Para poder acceder al directorio Torrent-SL con cual quier usuario que pertenezca a uno de estos grupos
+
+<img width="627" height="136" alt="image" src="https://github.com/user-attachments/assets/8f2fd2d8-5e5e-4a7c-ab70-7583935e5af7" />
+
+<img width="618" height="197" alt="image" src="https://github.com/user-attachments/assets/baced27d-324d-46c5-b4d6-4d1ce6b06e68" />
+
+
+---
+
 10. Accede como cada uno de los nueve usuarios (su -l usuario) y comprueba que puede hacer exactamente lo que el diagrama indica, y nada más.
 
+```bash
+su "usuario"
+```
+Alberto 
+<img width="619" height="164" alt="image" src="https://github.com/user-attachments/assets/65b92fb9-14d4-4fa5-b915-9dc3d8569b00" />
 
 
+Oscar 
+
+<img width="591" height="225" alt="image" src="https://github.com/user-attachments/assets/fb2d4619-ed01-4312-8f41-bb83b51a7667" />
+
+
+hugo
+
+<img width="595" height="227" alt="image" src="https://github.com/user-attachments/assets/2ca8cbd9-be33-44ff-a7f4-6698d903c85e" />
+
+
+carlos
+
+<img width="625" height="250" alt="image" src="https://github.com/user-attachments/assets/174e8005-a179-44b9-a1b2-b1bcaaa5736c" />
+
+
+nestor
+
+
+
+víctor 
+
+
+jonh
+
+
+lucia
+
+
+mary
 
 ## Preguntas de reflexión
 1. ¿Por qué no bastan los permisos clásicos de Unix (usuario / grupo / resto) para implementar el esquema del diagrama? Pon un ejemplo concreto de este caso.
