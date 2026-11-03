@@ -263,29 +263,42 @@ carlos
 
 nestor
 
+<img width="536" height="120" alt="image" src="https://github.com/user-attachments/assets/e5713eda-5b51-41d8-8650-6505997e23fd" />
 
 
 víctor 
 
+<img width="577" height="165" alt="image" src="https://github.com/user-attachments/assets/55124d33-2a5a-4b0f-8578-82f44510dc98" />
 
-jonh
+
+john
+
+<img width="629" height="165" alt="image" src="https://github.com/user-attachments/assets/c692b7aa-d065-4f25-99b6-a518e8744c6f" />
 
 
 lucia
 
+<img width="556" height="182" alt="image" src="https://github.com/user-attachments/assets/fbeddce0-f621-4029-b062-f05bada1b764" />
+
 
 mary
+
+<img width="553" height="166" alt="image" src="https://github.com/user-attachments/assets/b3432a2e-98f4-487a-825b-de961f1e1b0e" />
+
 
 ## Preguntas de reflexión
 1. ¿Por qué no bastan los permisos clásicos de Unix (usuario / grupo / resto) para implementar el esquema del diagrama? Pon un ejemplo concreto de este caso.
 
-Porque los permisos de grupo restringen a los usuarios que si que deberían poder acceder a algunos recursos en concreto
+Porque los permisos de grupo restringen a los usuarios que si que deberían poder acceder a algunos recursos en concreto, por ejemplo alberto y oscar pertenecen al mismo grupo pero no pueden hacerlo mismo 
 
 2. ¿Qué es la máscara (mask) de una ACL y cómo afecta a los permisos efectivos de un usuario o grupo, aunque su entrada de ACL indique más permisos?
 
+La máscara sirve para delimitar cual es el techo de los permisos que se le aplicaran a un usuario o grupo, aunque la entrada acl individual del usuario indique te tiene permisos de rwx si la mascara del archivo indica que tiene menos solo podra hacer lo que indique la máscara acl del archivo 
 
 3. ¿Qué diferencia hay entre una ACL de acceso y una ACL por defecto? ¿Cuándo se aplica cada una?
 
+La acl de acceso indica los permisos específicos que tendrá un archivo, mientras que las por defecto son las que se aplican por defecto a los archivos cuando se crean, las de acceso son para especificar permisos a usuarios o grupos concreto mientas que la por defecto son las que tendrán para todos desde el momento de la creación 
 
 4. Si mañana se incorpora un nuevo operario, ¿Qué pasos tendrías que repetir para darle exactamente el mismo acceso que al resto de operarios?
 
+crear el usuario para ese operario, añadirlo al grupo de operarios, y con setctl aplicar los permisos específicos si es que los tiene y no le basta con los que tiene su grupo 
