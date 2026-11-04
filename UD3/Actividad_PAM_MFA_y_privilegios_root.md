@@ -11,6 +11,8 @@ sudo apt update
 
 sudo apt install libpam-pwquality
 
+# Comprobar que en el archivo /etc/pam.d/common-password este esta línea activada  :
+
 password requisite pam_pwquality.so retry=3
 
 ```
@@ -39,6 +41,31 @@ sudo passwd usuario
 
 ```
 
+<img width="190" height="671" alt="image" src="https://github.com/user-attachments/assets/ef787b61-8add-493c-9eb2-9f4b6ed2480e" />
+
+<img width="177" height="82" alt="image" src="https://github.com/user-attachments/assets/3ce7eb5f-c58e-413d-b95b-c3126dd2b6db" />
+
+<img width="210" height="71" alt="image" src="https://github.com/user-attachments/assets/7f0bf007-1572-432f-8210-00b2f3cfd2c3" />
+
+- Ahora aplicar una contraseña a un usuario
+
+-- En este caso ha sido ```Ubuntu2024!#```
+
+<img width="699" height="186" alt="image" src="https://github.com/user-attachments/assets/2217b351-2f76-491d-9c41-62c559cf2b10" />
+
+- Contraseña para root
+
+Con enforce_for_root desactivado 
+
+<img width="722" height="147" alt="image" src="https://github.com/user-attachments/assets/29c22c62-90bd-4e8d-9cfd-29681315845c" />
+
+La contraseña con la que se hace la prueba es:  ```1234```
+
+Con enforce_for_root activado 
+
+<img width="669" height="194" alt="image" src="https://github.com/user-attachments/assets/b007fac9-065b-483a-a3b4-415e151ee65f" />
+
+
 ### Caducidad y aviso con chage
 
 - Para indicar cuanto tiempo dura la contraseña se hace con  ``` sudo chage ``` y las opciones de la tabla
@@ -50,6 +77,23 @@ sudo passwd usuario
 | -W | Días de aviso antes de que caduque |
 | -l | Lista la política actual aplicada a un usuario |
 
+```bash
+for u in nestor victor lucia carlos mary john; do
+    sudo chage -m 1 -M 60 -W 7 $u
+  done
+
+for u in alberto oscar hugo; do
+    sudo chage -m 1 -M 90 -W 7 $u
+  done
+
+chage -l nestor
+```
+
+<img width="777" height="442" alt="image" src="https://github.com/user-attachments/assets/c3743681-fdb1-4c8e-a0b7-f1e7ba970f78" />
+
+- Otro usuario afectado
+
+<img width="753" height="211" alt="image" src="https://github.com/user-attachments/assets/b9048ab0-6484-444b-a243-b84bb8458bb9" />
 
 
 ## PARTE 2 MFA en SSH con Google Authenticator
