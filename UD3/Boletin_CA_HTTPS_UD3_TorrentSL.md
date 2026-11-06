@@ -82,8 +82,39 @@ openssl verify -CAfile certs/ca.crt certs/srv.crt
 openssl x509 -in certs/srv.crt -noout -subject -issuer -ext subjectAltName
 ```
 
+- Paso 9 — Instalar el certificado en Apache
+
+```
+sudo cp ~/ca/certs/srv.crt /etc/ssl/certs/torrent-srv.crt
+sudo cp ~/ca/private/srv.key /etc/ssl/private/torrent-srv.key
+sudo chmod 600 /etc/ssl/private/torrent-srv.key
+sudo a2enmod ssl
+sudo nano /etc/apache2/sites-available/default-ssl.conf
+# En default-ssl.conf localiza las dos líneas que apuntan a un certificado de pruebas (ssl-cert-snakeoil) y cámbialas por las tuyas:
+
+SSLCertificateFile /etc/ssl/certs/torrent-srv.crt
+SSLCertificateKeyFile /etc/ssl/private/torrent-srv.key
 
 
 
+sudo a2ensite default-ssl
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+sudo ss -tlnp | grep ':443
 
+```
+- Paso 10 — Probar HTTPS desde la propia VM, antes de confiar en la CA
+```
+curl -I https://IP_SERVIDOR
+
+
+curl -I --cacert ~/ca/certs/ca.crt https://IP_SERVIDOR
+```
+
+- Paso 11 — El navegador: advertencia, huella e importación de la CA
+```
+sudo cp ~/ca/certs/ca.crt /var/www/html/torrent-ca.crt
+openssl x509 -in ~/ca/certs/ca.crt -noout -fingerprint -sha256
+
+```
 
