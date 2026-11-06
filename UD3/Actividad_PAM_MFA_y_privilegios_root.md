@@ -127,6 +127,7 @@ acceso root borre o regenere el fichero ~/.google_authenticator del usuario afec
 
 ### Conectar Google Authenticator con sshd
 
+----
 
 ### Verificación
 1. Desde otra terminal (o desde el móvil con un cliente SSH), conéctate como el usuario que configuró el MFA.
@@ -139,6 +140,7 @@ acceso root borre o regenere el fichero ~/.google_authenticator del usuario afec
 
 
 ### ¿A quién se lo exigimos?
+
 
 
 # PARTE 3 Privilegios justos con sudo
@@ -171,6 +173,8 @@ hmi_planta
 # 4. Guarda y sal: visudo valida la sintaxis automáticamente. Si hay un error, te avisa y te deja corregirlo antes de guardar — nunca lo fuerces.
 
 ```
+
+---
 
 ### Verificación
 5. Comprueba lo que puede hacer cada usuario con ```sudo -l```:
