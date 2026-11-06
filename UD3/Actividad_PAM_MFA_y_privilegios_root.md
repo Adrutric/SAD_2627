@@ -141,4 +141,55 @@ acceso root borre o regenere el fichero ~/.google_authenticator del usuario afec
 ### ¿A quién se lo exigimos?
 
 
+# PARTE 3 Privilegios justos con sudo
+
+3.3 Práctica guiada
+```bash
+
+# 1. Crea un script de prueba /usr/local/bin/auditoria_planta.sh que simplemente muestre un mensaje, y dale permiso de ejecución:
+
+
+sudo tee /usr/local/bin/auditoria_planta.sh <<'EOF'
+
+#!/bin/bash
+
+echo "[$(date)] Auditoría de planta ejecutada por $(whoami)"
+EOF
+
+sudo chmod 755 /usr/local/bin/auditoria_planta.sh
+
+# 2. Crea el fichero de reglas con visudo, apuntando a un fichero nuevo en sudoers.d:
+
+sudo visudo -f /etc/sudoers.d/torrent
+
+# 3. Escribe dentro estas tres líneas (una por grupo; fíjate en que operarios no aparece):
+
+%ingenieria ALL=(root) /usr/bin/systemctl restart hmi_planta, /usr/bin/systemctl status
+hmi_planta
+%supervisores ALL=(root) NOPASSWD: /usr/local/bin/auditoria_planta.sh
+
+# 4. Guarda y sal: visudo valida la sintaxis automáticamente. Si hay un error, te avisa y te deja corregirlo antes de guardar — nunca lo fuerces.
+
+```
+
+### Verificación
+5. Comprueba lo que puede hacer cada usuario con ```sudo -l```:
+ ```bash
+ sudo -l -U nestor
+ sudo -l -U carlos
+ sudo -l -U alberto
+```
+
+6. Conectado como alberto (operarios), intenta ejecutar algo con sudo y confirma que se le deniega:
+```bash
+sudo systemctl restart hmi_planta
+alberto is not in the sudoers file. This incident will be reported.
+```
+7. Busca ese intento en el registro del sistema:
+```bash
+sudo journalctl -u sudo | tail -n 20
+# o, según la distribución:
+sudo tail -n 20 /var/log/auth.log
+```
+8. Conectado como carlos (supervisores), ejecuta ```sudo /usr/local/bin/auditoria_planta.sh``` y comprueba que no pide contraseña.
 
