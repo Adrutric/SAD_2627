@@ -103,6 +103,19 @@ chage -l nestor
 ```bash
 sudo apt install libpam-google-authenticator
 ```
+### Generar el secreto
+<img width="824" height="686" alt="image" src="https://github.com/user-attachments/assets/e3d71021-243a-4922-af39-f85d554640c3" />
+
+### Conectar Google Authenticator con sshd
+
+<img width="437" height="86" alt="image" src="https://github.com/user-attachments/assets/c92fe85c-8fe0-4bea-8e39-058089248fc8" />
+
+<img width="346" height="39" alt="image" src="https://github.com/user-attachments/assets/751aad47-1c6f-47d7-870c-fee8a6a12df5" />
+
+<img width="148" height="41" alt="image" src="https://github.com/user-attachments/assets/87a54ef9-6add-4c22-95b2-d87db22686e5" />
+
+<img width="305" height="68" alt="image" src="https://github.com/user-attachments/assets/bbaebe28-968e-4f38-9b07-e01134fac0eb" />
+
 
 ### Generar el secreto (lo hace cada usuario, con su propia cuenta)
 
