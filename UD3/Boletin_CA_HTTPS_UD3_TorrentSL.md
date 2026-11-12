@@ -173,12 +173,20 @@ tar czf ~/ca-torrent-backup.tar.gz -C ~ ca
 1.3 Preguntas de la Parte 1
 
 1. Explica con tus palabras la diferencia entre ca.key, ca.crt, srv.key y srv.crt: ¿cuáles son secretos y cuáles públicos?
+ca.key
 
-2. Alguien roba ca.key (sin contraseña). ¿Qué puede hacer con ella? ¿Qué tendría que hacer Torrent S.L. para recuperar la confianza?
+| Archivo | Tipo | ¿Es secreto? |
+|---|---|---|
+| ca.key | Clave privada de la CA | Sí |
+| ca.crt | Certificado público de la CA | No |
+| srv.key | Clave privada del servidor | Sí |
+| srv.crt | Certificado público del servidor | No |
 
-3. ¿Por qué descargar ca.crt por HTTP y no verificar la huella es un riesgo? ¿Quién podría aprovecharlo?
+3. Alguien roba ca.key (sin contraseña). ¿Qué puede hacer con ella? ¿Qué tendría que hacer Torrent S.L. para recuperar la confianza?
 
-4. ¿Es una buena idea que la CA y el servidor web estén en la misma máquina? ¿Qué problema de seguridad crea?
+4. ¿Por qué descargar ca.crt por HTTP y no verificar la huella es un riesgo? ¿Quién podría aprovecharlo?
+
+5. ¿Es una buena idea que la CA y el servidor web estén en la misma máquina? ¿Qué problema de seguridad crea?
 
 
 ## PARTE 2 Un certificado real y gratuito con Let’s Encrypt
