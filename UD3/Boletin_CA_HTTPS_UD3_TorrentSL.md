@@ -173,7 +173,14 @@ tar czf ~/ca-torrent-backup.tar.gz -C ~ ca
 1.3 Preguntas de la Parte 1
 
 1. Explica con tus palabras la diferencia entre ca.key, ca.crt, srv.key y srv.crt: ¿cuáles son secretos y cuáles públicos?
-ca.key
+
+ca.key es la clave privada de la autoridad certificadora, tienen que ser secreta y es la que permite que se firmen nuevos certificados
+
+ca.crt es el certificado público de la autoridad certificadora, es publica y sirve para que los clientes puedan verificar si esta firmado con la clave privada
+
+srv.key es la clave privada del servidor web, esta tiene que ser privada y secreta se utiliza para demostrar que el servidor es quien dice ser
+
+srv.crt esta es el certificado público del servidor web, sirve para comprobar que el servidor que afirma ser con una clave privada es la autentica firma, esta es publica 
 
 | Archivo | Tipo | ¿Es secreto? |
 |---|---|---|
@@ -183,13 +190,36 @@ ca.key
 | srv.crt | Certificado público del servidor | No |
 
 3. Alguien roba ca.key (sin contraseña). ¿Qué puede hacer con ella? ¿Qué tendría que hacer Torrent S.L. para recuperar la confianza?
+Podría fabricar certificados privados falsos, eliminar los certificados falsos, crear una ca.key nueva para volver a actuar como CA con su nueva ca.key y ca.crt
 
 4. ¿Por qué descargar ca.crt por HTTP y no verificar la huella es un riesgo? ¿Quién podría aprovecharlo?
+Porque HTTP no cifra los datos durante la descarga, y podrían ser manipulados y cambiar el certificado real por uno falso
 
 5. ¿Es una buena idea que la CA y el servidor web estén en la misma máquina? ¿Qué problema de seguridad crea?
-
+No, es un riesgo por que si logran acceder al servidor web también lograrían acceso a la CA, y con eso podría generar certificados falsos 
 
 ## PARTE 2 Un certificado real y gratuito con Let’s Encrypt
+
+Paso 1 — Crear tu subdominio en DuckDNS
+
+```
+getent hosts NOMBRE.duckdns.org
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
