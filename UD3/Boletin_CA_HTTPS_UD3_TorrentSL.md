@@ -207,18 +207,100 @@ getent hosts NOMBRE.duckdns.org
 
 ```
 
+Paso 2 — Instalar acme.sh (leyendo antes lo que se va a ejecutar)
+
+```
+sudo -i
+curl -o get-acme.sh https://get.acme.sh
+less get-acme.sh
+sh get-acme.sh email=TU_CORREO
+```
 
 
+Paso 3 — Elegir Let’s Encrypt como autoridad
+```
+~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
+```
 
+Paso 4 — Pedir el certificado (desafío DNS-01)
+```
+export DuckDNS_Token="PEGA_AQUI_TU_TOKEN"
+~/.acme.sh/acme.sh --issue --dns dns_duckdns -d NOMBRE.duckdns.org
+```
 
+Paso 5 — Instalar el certificado donde Apache pueda usarlo
+```
+mkdir -p /etc/ssl/torrent-le
 
+~/.acme.sh/acme.sh --install-cert -d NOMBRE.duckdns.org \
+ --key-file /etc/ssl/torrent-le/privkey.pem \
+ --fullchain-file /etc/ssl/torrent-le/fullchain.pem \
+ --reloadcmd "systemctl reload apache2"
 
+chmod 600 /etc/ssl/torrent-le/privkey.pem
+```
 
+Paso 6 — Cambiar Apache al certificado de Let’s Encrypt
 
+```
+cp /etc/apache2/sites-available/default-ssl.conf /root/default-ssl.conf.ca-propia
 
+nano /etc/apache2/sites-available/default-ssl.conf
 
+# Hay que cambiar estas dos lineas
+SSLCertificateFile /etc/ssl/torrent-le/fullchain.pem
+SSLCertificateKeyFile /etc/ssl/torrent-le/privkey.pem
 
+sudo apache2ctl configtest
+
+sudo systemctl reload apache2
+```
+
+Paso 7 — Comprobar el resultado
+```
+curl -vI https://NOMBRE.duckdns.org 2>&1 \
+ | grep -iE 'subject:|issuer:|expire|verify|HTTP/'
+```
+
+Paso 8 — Mirar la cadena y la lista de CA de confianza
+```
+openssl s_client -connect NOMBRE.duckdns.org:443 \
+ -servername NOMBRE.duckdns.org </dev/null 2>/dev/null \
+ | grep -E ' s:| i:|Verify return code'
+
+ls /etc/ssl/certs | grep -i isrg
+```
+
+Paso 9 — La renovación automática
+
+```
+crontab -l | grep acme
+
+~/.acme.sh/acme.sh --list
+
+```
+2.3 Comparamos las dos situaciones
+| - | CA propia de Torrent S.L. | Let’s Encrypt |
+| --- | --- | --- 
+| ¿Quién firma el certificado? | | |
+| ¿El navegador lo acepta sin hacer nada? | | |
+| ¿Qué tuviste que hacer para que confiara? | | |
+| Validez del certificado del servidor Coste y esfuerzo de renovarlo | | |
+| ¿Qué se comprueba antes de firmar? | | |
+| ¿Valdría para un servidor sin Internet?| | |
+
+3. Preguntas finales
+
+1. ¿Por qué el navegador confía en Let’s Encrypt y no en la CA de Torrent S.L.? ¿Quién decide en qué entidades confía un navegador?
+
+2. ¿Por qué los certificados de Let’s Encrypt duran solo 90 días? Piensa en qué pasa si alguien roba la clave privada del servidor.
+
+3. La página interna de la planta de Torrent S.L. no tiene salida a Internet. ¿Qué CA usarías, la propia o Let’s Encrypt? ¿Y para la web pública de un cliente?
+
+4. HTTPS protege la confidencialidad y la integridad de lo que viaja. Pon dos ejemplos de ataques que HTTPS no impide.
+
+5. Una empresa de 3 personas, ¿montaría una CA propia? ¿Cuándo sí tiene sentido? Relaciónalo con lo que haremos en la Fase 2 (VPN).
 
 
 
