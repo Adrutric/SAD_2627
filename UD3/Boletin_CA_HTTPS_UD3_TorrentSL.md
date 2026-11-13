@@ -321,14 +321,18 @@ crontab -l | grep acme
 
 1. ¿Por qué el navegador confía en Let’s Encrypt y no en la CA de Torrent S.L.? ¿Quién decide en qué entidades confía un navegador?
 
+Porque Let's Encrypt es una CA publica y de confianza y Torrent SL es privada y no es de confianza hasta que se indique que es de confianza, los creadores de los navegadores deciden cuales serán las CA por defecto 
+
 2. ¿Por qué los certificados de Let’s Encrypt duran solo 90 días? Piensa en qué pasa si alguien roba la clave privada del servidor.
+ Por que así en el caso de que se robe el certificado el tiempo durante el que se puede utilizar es menor y así no pueden hacerse pasar por el servidor durante más tiempo
 
 3. La página interna de la planta de Torrent S.L. no tiene salida a Internet. ¿Qué CA usarías, la propia o Let’s Encrypt? ¿Y para la web pública de un cliente?
+Para la página interna usaría la CA privada, y para la publica Let’s Encrypt para que los navegadores que quieran consultar la web publica puedan confiar en el certificado 
 
 4. HTTPS protege la confidencialidad y la integridad de lo que viaja. Pon dos ejemplos de ataques que HTTPS no impide.
+El Phishing, ese por mucho que utilices certificados no de pende de la CA, si engaña a la persona
+Y otro es que descargues un malware por que el servidor de confianza a sido comprometido y han cambiado el programa que tenia que ser el original 
 
-5. Una empresa de 3 personas, ¿montaría una CA propia? ¿Cuándo sí tiene sentido? Relaciónalo con lo que haremos en la Fase 2 (VPN).
-
-
-
+6. Una empresa de 3 personas, ¿montaría una CA propia? ¿Cuándo sí tiene sentido? Relaciónalo con lo que haremos en la Fase 2 (VPN).
+Para una empresa de 3 personas no tiene sentido montar una CA propia, tiene sentido sí necesitas controlar muchos servicios internos, se puede relacionar con la fase 2 por que se puede utilizar la CA privada para controlar y crear los certificados de las VPN
 
