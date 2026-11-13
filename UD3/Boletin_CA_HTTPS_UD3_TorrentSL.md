@@ -202,10 +202,13 @@ No, es un riesgo por que si logran acceder al servidor web también lograrían a
 
 Paso 1 — Crear tu subdominio en DuckDNS
 
+<img width="1236" height="456" alt="image" src="https://github.com/user-attachments/assets/8047dc4a-76d4-4f6d-a4ea-634cbb922c7e" />
+
 ```
 getent hosts NOMBRE.duckdns.org
 
 ```
+<img width="620" height="81" alt="image" src="https://github.com/user-attachments/assets/a41d5069-f57b-4e06-9b87-fe9b3b8e2222" />
 
 Paso 2 — Instalar acme.sh (leyendo antes lo que se va a ejecutar)
 
@@ -216,12 +219,21 @@ less get-acme.sh
 sh get-acme.sh email=TU_CORREO
 ```
 
+<img width="597" height="125" alt="image" src="https://github.com/user-attachments/assets/5565b8bd-2bb2-4010-9d02-933f5756f901" />
+Crea el directorio ~/.acme.sh, donde se almacenan los archivos y configuraciones necesarios para el funcionamiento de acme.sh.
+
+Configura una tarea programada en cron para ejecutar automáticamente el proceso de comprobación y renovación de los certificados.
+
+<img width="713" height="163" alt="image" src="https://github.com/user-attachments/assets/22f570af-17ac-4e18-b6e6-1e5c526bd828" />
 
 Paso 3 — Elegir Let’s Encrypt como autoridad
 ```
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
 ```
+<img width="761" height="91" alt="image" src="https://github.com/user-attachments/assets/52105db6-1431-43f8-b195-b32e3965fc36" />
+
+<img width="515" height="92" alt="image" src="https://github.com/user-attachments/assets/57e6d467-a94c-4140-b0b8-0bb8bfe6dbab" />
 
 Paso 4 — Pedir el certificado (desafío DNS-01)
 ```
@@ -241,6 +253,11 @@ mkdir -p /etc/ssl/torrent-le
 chmod 600 /etc/ssl/torrent-le/privkey.pem
 ```
 
+<img width="766" height="306" alt="image" src="https://github.com/user-attachments/assets/b5512b85-fe8b-4fbf-a1af-8cf9215e9fc3" />
+
+<img width="762" height="158" alt="image" src="https://github.com/user-attachments/assets/96957734-f5bd-4e58-86ad-4fc863b5480f" />
+
+
 Paso 6 — Cambiar Apache al certificado de Let’s Encrypt
 
 ```
@@ -256,12 +273,18 @@ sudo apache2ctl configtest
 
 sudo systemctl reload apache2
 ```
+<img width="633" height="227" alt="image" src="https://github.com/user-attachments/assets/1acc708f-a564-41d7-bb68-e03468bcf7af" />
+
+<img width="440" height="160" alt="image" src="https://github.com/user-attachments/assets/a5ab34db-f4ab-431b-94ea-f949652b9456" />
+
 
 Paso 7 — Comprobar el resultado
 ```
 curl -vI https://NOMBRE.duckdns.org 2>&1 \
  | grep -iE 'subject:|issuer:|expire|verify|HTTP/'
 ```
+
+<img width="753" height="215" alt="image" src="https://github.com/user-attachments/assets/604b6768-0f60-438b-8aa8-cf23f833223a" />
 
 Paso 8 — Mirar la cadena y la lista de CA de confianza
 ```
@@ -271,6 +294,10 @@ openssl s_client -connect NOMBRE.duckdns.org:443 \
 
 ls /etc/ssl/certs | grep -i isrg
 ```
+
+<img width="710" height="283" alt="image" src="https://github.com/user-attachments/assets/6307d552-5b68-41ab-9a2a-3674be398608" />
+
+<img width="776" height="122" alt="image" src="https://github.com/user-attachments/assets/3d75829e-3042-4df5-ae7e-b60216180c7c" />
 
 Paso 9 — La renovación automática
 
@@ -283,12 +310,12 @@ crontab -l | grep acme
 2.3 Comparamos las dos situaciones
 | - | CA propia de Torrent S.L. | Let’s Encrypt |
 | --- | --- | --- 
-| ¿Quién firma el certificado? | | |
-| ¿El navegador lo acepta sin hacer nada? | | |
-| ¿Qué tuviste que hacer para que confiara? | | |
-| Validez del certificado del servidor Coste y esfuerzo de renovarlo | | |
-| ¿Qué se comprueba antes de firmar? | | |
-| ¿Valdría para un servidor sin Internet?| | |
+| ¿Quién firma el certificado? | La CA Torrent | Let's Encrypt, |
+| ¿El navegador lo acepta sin hacer nada? | No, al ser un certificado auto firmado no confia | Si, es una CA de confianza |
+| ¿Qué tuviste que hacer para que confiara? | Importar el certificado raíz de la CA propia en el almacén de confianza del navegador o del sistema | Nada especial: el navegador ya confía en la cadena de certificados de Let's Encrypt. |
+| Validez del certificado del servidor Coste y esfuerzo de renovarlo | 365 | 90 |
+| ¿Qué se comprueba antes de firmar? | Que la solicitud del servidor sea válida y que el administrador de la CA autorice su firma. | Que se demuestra el control sobre el dominio solicitado. |
+| ¿Valdría para un servidor sin Internet?| 	Sí, porque la CA puede funcionar dentro de la red local. | No funcionaria por que cada revisión necesitaría salir a internet para comprobar que es el dominio que dice ser |
 
 3. Preguntas finales
 
