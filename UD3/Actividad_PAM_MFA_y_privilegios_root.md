@@ -130,12 +130,18 @@ sudo apt install libpam-google-authenticator
 | ¿Limitar los intentos (rate-limit)? | y — 3 intentos cada 30 s, frena la fuerza bruta sobre el código |
 
 - Después muestra un QR y una clave secreta en base32, además de 5 «scratch codes» (códigos de emergencia, de un solo uso).
+<img width="759" height="139" alt="image" src="https://github.com/user-attachments/assets/e80d051b-09e9-42f0-8b49-2cac2777aa63" />
+
+<img width="636" height="407" alt="image" src="https://github.com/user-attachments/assets/36bd52cb-7ecb-48bb-a253-cb4fb6852a51" />
+
 
 -  Escanear el QR en la APP Google Authenticator o introducir la clave a mano
 
 #### ⚠⚠⚠ Importante ⚠⚠⚠
 Guardad los scratch codes en un sitio seguro. Si perdéis el teléfono y no los tenéis, la única salida es que alguien con
 acceso root borre o regenere el fichero ~/.google_authenticator del usuario afectado.
+
+
 
 
 ### Conectar Google Authenticator con sshd
@@ -145,11 +151,16 @@ acceso root borre o regenere el fichero ~/.google_authenticator del usuario afec
 ### Verificación
 1. Desde otra terminal (o desde el móvil con un cliente SSH), conéctate como el usuario que configuró el MFA.
 
+<img width="687" height="331" alt="image" src="https://github.com/user-attachments/assets/1bc9cd4f-3f42-4666-bd93-50091ab41506" />
+
 
 2. Comprueba que primero pide la contraseña y después el código de 6 dígitos de la app.
 
+Primero pide la contraseña del usuario y luego el código de google autenticator 
 
 3. Prueba a escribir un código incorrecto y comprueba que la conexión se rechaza.
+
+<img width="388" height="220" alt="image" src="https://github.com/user-attachments/assets/59a3c145-558e-483a-b021-2993572178b2" />
 
 
 ### ¿A quién se lo exigimos?
@@ -187,6 +198,14 @@ hmi_planta
 
 ```
 
+# 1º
+
+<img width="708" height="211" alt="image" src="https://github.com/user-attachments/assets/ae03a6ba-a044-4ccd-881f-ceb86e589ca9" />
+
+# 2º
+
+<img width="799" height="101" alt="image" src="https://github.com/user-attachments/assets/c1a5beb6-e81d-401f-ad02-77fd94111955" />
+
 ---
 
 ### Verificación
@@ -196,17 +215,47 @@ hmi_planta
  sudo -l -U carlos
  sudo -l -U alberto
 ```
+<img width="808" height="489" alt="image" src="https://github.com/user-attachments/assets/81b7dbde-def9-4353-8f1e-3392e5063a21" />
 
 6. Conectado como alberto (operarios), intenta ejecutar algo con sudo y confirma que se le deniega:
 ```bash
 sudo systemctl restart hmi_planta
 alberto is not in the sudoers file. This incident will be reported.
 ```
+
+
 7. Busca ese intento en el registro del sistema:
 ```bash
 sudo journalctl -u sudo | tail -n 20
 # o, según la distribución:
 sudo tail -n 20 /var/log/auth.log
 ```
+
+<img width="743" height="290" alt="image" src="https://github.com/user-attachments/assets/260a093d-5401-40b9-82f4-d18fc9707216" />
+
 8. Conectado como carlos (supervisores), ejecuta ```sudo /usr/local/bin/auditoria_planta.sh``` y comprueba que no pide contraseña.
 
+<img width="738" height="67" alt="image" src="https://github.com/user-attachments/assets/5aaddacd-1aec-477c-b722-ad90609fb0ce" />
+
+
+
+Preguntas de reflexión
+
+1. Una contraseña de 20 caracteres aleatorios es, en teoría, casi imposible de reventar por fuerza bruta. ¿Qué riesgo concreto cubre el MFA que una contraseña así, por fuerte que sea, no cubre?
+Que aunque se logre saber la contraseña necesite otro paso más para poder logar iniciar sesión, y entonces no es solo algo que se sino que también es algo que poseo para poder verificarse 
+
+2. Buscad brevemente la postura actual del NIST sobre la caducidad obligatoria de contraseñas. ¿Por qué forzar el cambio cada pocos días puede llegar a ser contraproducente para la seguridad real?
+Por que hace que los usuarios terminen haciendo cambios solo al final de la contraseña como podría ser la fecha del mes o de la semana 
+
+3. Aunque sudo esté perfectamente configurado, seguís necesitando las ACL de la sesión anterior. Explicad con un ejemplo por qué una capa no sustituye a la otra.
+por ejemplo un trabajador del grupo ingenieria tiene permiso mediante sudo para reiniciar el servicio hmi_planta, pero no tiene permiso para modificar el archivo /etc/planta/configuracion.conf
+
+4. Un alumno pierde el móvil con Google Authenticator y no guardó los scratch codes. ¿Qué tendría que hacer el administrador del sistema para devolverle el acceso sin comprometer la seguridad del resto de cuentas?
+
+1º Revocar el autenticador anterior, invalidando el secreto TOTP asociado al móvil perdido.
+
+2º Acceder al servidor mediante una cuenta administrativa y eliminar o sustituir el archivo .google_authenticator del usuario afectado.
+
+3º Permitir que el alumno vuelva a configurar Google Authenticator escaneando un nuevo código QR.
+
+4º Generar y guardar nuevos códigos de recuperación (scratch codes) para evitar que vuelva a ocurrir el mismo problema.
