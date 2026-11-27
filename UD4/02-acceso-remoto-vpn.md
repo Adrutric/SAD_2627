@@ -91,6 +91,7 @@ ping -c 2 10.0.20.20
 
 - Entrega 0. Captura del ping fallando (sin ruta o sin respuesta) y de ip -br a en el cliente.
 
+<img width="681" height="201" alt="image" src="https://github.com/user-attachments/assets/dd458164-2cd6-44a7-bc0e-134b0cf2107f" />
 
 ## Parte 1 · Montar la CA con Easy-RSA y emitir los certificados
 
